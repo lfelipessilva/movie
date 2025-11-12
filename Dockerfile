@@ -6,14 +6,26 @@ COPY package*.json ./
 RUN npm ci
 
 COPY . .
+
+ARG VITE_TMDB_URL
+ARG VITE_TMDB_API_KEY
+ARG VITE_TMDB_IMAGE_URL
+
+ENV VITE_TMDB_URL=$VITE_TMDB_URL
+ENV VITE_TMDB_API_KEY=$VITE_TMDB_API_KEY
+ENV VITE_TMDB_IMAGE_URL=$VITE_TMDB_IMAGE_URL
+
 RUN npm run build
 
-FROM nginx:alpine
+FROM node:20-alpine AS runner
 
-COPY --from=builder /app/dist /usr/share/nginx/html
-COPY nginx.conf /etc/nginx/conf.d/default.conf
+WORKDIR /app
 
-EXPOSE 80
+RUN npm install -g serve
 
-CMD ["nginx", "-g", "daemon off;"]
+COPY --from=builder /app/dist ./dist
+
+EXPOSE 3000
+
+CMD ["serve", "-s", "dist", "-l", "3000"]
 
