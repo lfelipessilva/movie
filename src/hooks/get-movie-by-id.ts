@@ -2,9 +2,8 @@ import { useQuery } from "@tanstack/react-query";
 import { api } from "../lib/axios";
 import type { Movie } from "../types/movie";
 
-const getMovieById = async ({ id }: { id: number }) => {
+export const getMovieById = async ({ id }: { id: number }) => {
   const response = await api.get<Movie>(`/movie/${id}`);
-  console.log("response", JSON.stringify(response.data, null, 2));
 
   return response.data;
 };

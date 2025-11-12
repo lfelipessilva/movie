@@ -2,7 +2,7 @@ import { useParams, useNavigate } from "react-router";
 import { useMovieById } from "../../../hooks/get-movie-by-id";
 import { useMovieImage } from "../../../hooks/get-movie-image";
 import { Rating } from "../../../components/rating";
-import { FavoriteButton } from "../../../components/favorite-button";
+import { FavoriteButton } from "../../../components/favorite/button";
 import { ArrowLeft } from "lucide-react";
 
 export function MoviePage() {

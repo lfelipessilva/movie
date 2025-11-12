@@ -1,11 +1,11 @@
 import { Rating } from "../../rating";
-import type { PopularMovie } from "../../../types/movie";
+import type { Movie, PopularMovie } from "../../../types/movie";
 import { useGlowEffect } from "../../../hooks/ui/use-glow-effect";
 import { useNavigate } from "react-router";
 import { useMovieImage } from "../../../hooks/get-movie-image";
-import { FavoriteButton } from "../../favorite-button";
+import { FavoriteButton } from "../../favorite/button";
 
-export function MovieCard({ movie }: { movie: PopularMovie }) {
+export function MovieCard({ movie }: { movie: PopularMovie | Movie}) {
   const { url: posterUrl } = useMovieImage({ path: movie.poster_path, width: 300 });
   const navigate = useNavigate();
   const { handleMove, glowStyle } = useGlowEffect();

@@ -1,5 +1,5 @@
 import { Heart } from "lucide-react";
-import { useFavorites } from "../../hooks/use-favorites";
+import { useFavorites } from "../../../hooks/use-favorites";
 
 interface FavoriteButtonProps {
   movieId: number;
