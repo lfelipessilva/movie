@@ -11,21 +11,17 @@ ARG VITE_TMDB_URL
 ARG VITE_TMDB_API_KEY
 ARG VITE_TMDB_IMAGE_URL
 
-ENV VITE_TMDB_URL=$VITE_TMDB_URL
-ENV VITE_TMDB_API_KEY=$VITE_TMDB_API_KEY
-ENV VITE_TMDB_IMAGE_URL=$VITE_TMDB_IMAGE_URL
+RUN if [ -n "$VITE_TMDB_URL" ]; then export VITE_TMDB_URL="$VITE_TMDB_URL"; fi && \
+    if [ -n "$VITE_TMDB_API_KEY" ]; then export VITE_TMDB_API_KEY="$VITE_TMDB_API_KEY"; fi && \
+    if [ -n "$VITE_TMDB_IMAGE_URL" ]; then export VITE_TMDB_IMAGE_URL="$VITE_TMDB_IMAGE_URL"; fi && \
+    npm run build
 
-RUN npm run build
+FROM nginx:alpine
 
-FROM node:20-alpine AS runner
+COPY --from=builder /app/dist /usr/share/nginx/html
+COPY nginx.conf /etc/nginx/conf.d/default.conf
 
-WORKDIR /app
+EXPOSE 80
 
-RUN npm install -g serve
-
-COPY --from=builder /app/dist ./dist
-
-EXPOSE 3000
-
-CMD ["serve", "-s", "dist", "-l", "3000"]
+CMD ["nginx", "-g", "daemon off;"]
 
