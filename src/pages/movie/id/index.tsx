@@ -46,7 +46,7 @@ export function MoviePage() {
   });
 
   return (
-    <div className="min-h-screen">
+    <div className="">
       <div className="relative h-[85vh] overflow-hidden">
         {backdropUrl && (
           <>
@@ -87,7 +87,7 @@ export function MoviePage() {
 
               <div className="flex flex-col justify-center gap-6 flex-1">
                 <div>
-                  <h1 className="text-6xl font-bold mb-4 text-text-primary">
+                  <h1 className="text-3xl sm:text-4xl md:text-6xl font-bold mb-4 text-text-primary">
                     {data.title}
                   </h1>
                   
@@ -121,8 +121,8 @@ export function MoviePage() {
                 </div>
 
                 <div>
-                  <h2 className="text-2xl font-bold mb-3 text-text-primary">Sinopse</h2>
-                  <p className="text-lg text-text-secondary leading-relaxed max-w-3xl">
+                  <h2 className="text-xl sm:text-2xl font-bold mb-3 text-text-primary">Sinopse</h2>
+                  <p className="text-md text-text-secondary leading-relaxed max-w-3xl">
                     {data.overview || "Sinopse não disponível."}
                   </p>
                 </div>
@@ -132,7 +132,7 @@ export function MoviePage() {
         </div>
       </div>
 
-      <div className="bg-surface-primary min-h-[15vh]" />
+      {/* <div className="bg-surface-primary min-h-[15vh]" /> */}
     </div>
   );
 }
