@@ -25,7 +25,7 @@ A aplicação possui as seguintes rotas:
 |------|------------|-----------|
 | `/` | `HomePage` | Exibe filmes populares com scroll infinito |
 | `/movie/:id` | `MoviePage` | Exibe detalhes completos de um filme específico |
-| `/search` | `SearchPage` | Exibe resultados de busca de filmes |
+| `/search` | `SearchPage` | Exibe resultados de busca de filmes com scroll infinito |
 | `/favorites` | `FavoritesPage` | Exibe lista de filmes favoritos com opções de ordenação |
 
 ## Configuração da API do TMDB
@@ -128,10 +128,6 @@ npm run lint
 
 - **Jest**: Framework de testes
 - **React Testing Library**: Utilitários para testes de componentes React
-- **@testing-library/jest-dom**: Matchers customizados para Jest
-- **@testing-library/user-event**: Simulação de interações do usuário
-- **ts-jest**: Preset TypeScript para Jest
-- **jest-environment-jsdom**: Ambiente DOM para testes
 
 ### Ferramentas de Desenvolvimento
 
