@@ -2,55 +2,60 @@
 
 Aplicação React para explorar filmes, buscar títulos, visualizar detalhes e gerenciar uma lista de favoritos, utilizando a API pública do The Movie Database (TMDB).
 
-**Hospedagem:** [https://movie.luislab.xyz](https://movie.luislab.xyz)
-
 ## Demonstração
 
-A aplicação está disponível em produção no endereço [https://movie.luislab.xyz](https://movie.luislab.xyz).
+Aplicação disponível em: [https://movie.luislab.xyz](https://movie.luislab.xyz)
 
 ## Funcionalidades Principais
 
-- **Exploração de filmes populares**: Visualização de filmes populares com scroll infinito
-- **Busca de filmes**: Pesquisa de filmes por título
-- **Detalhes do filme**: Visualização completa de informações, incluindo sinopse, gêneros, data de lançamento e avaliações
-- **Sistema de favoritos**: Adição e remoção de filmes da lista de favoritos com persistência em localStorage
-- **Ordenação de favoritos**: Ordenação por título ou avaliação, em ordem crescente ou decrescente
-- **Interface responsiva**: Design adaptável para diferentes tamanhos de tela
-- **Tratamento de erros**: Feedback visual para estados de carregamento e erros
+- **Exploração de Filmes**: Visualização de filmes populares com scroll infinito
+- **Busca de Filmes**: Pesquisa de filmes por título
+- **Detalhes do Filme**: Visualização completa de informações, incluindo sinopse, gêneros, data de lançamento e avaliações
+- **Gerenciamento de Favoritos**: Adição e remoção de filmes da lista de favoritos com persistência em localStorage
+- **Ordenação de Favoritos**: Ordenação por título ou avaliação em ordem crescente ou decrescente
+- **Tratamento de Erros**: Exibição de mensagens de erro com opção de retry
+- **Estados de Loading**: Indicadores visuais durante carregamento de dados
+- **Design Responsivo**: Interface adaptável para diferentes tamanhos de tela
 
 ## Estrutura de Páginas
 
-A aplicação possui quatro páginas principais:
+A aplicação possui as seguintes rotas:
 
-| Rota | Descrição |
-|------|-----------|
-| `/` | Página inicial com lista de filmes populares e scroll infinito |
-| `/movie/:id` | Página de detalhes do filme com informações completas |
-| `/search?q=<query>` | Página de busca de filmes por título |
-| `/favorites?sortBy=<field>&order=<asc\|desc>` | Página de favoritos com opções de ordenação |
+| Rota | Componente | Descrição |
+|------|------------|-----------|
+| `/` | `HomePage` | Exibe filmes populares com scroll infinito |
+| `/movie/:id` | `MoviePage` | Exibe detalhes completos de um filme específico |
+| `/search` | `SearchPage` | Exibe resultados de busca de filmes |
+| `/favorites` | `FavoritesPage` | Exibe lista de filmes favoritos com opções de ordenação |
 
 ## Configuração da API do TMDB
 
-A aplicação utiliza a API do The Movie Database (TMDB). Para configurar:
+Para utilizar a aplicação, é necessário obter uma chave de API do TMDB:
 
-1. Acesse [https://www.themoviedb.org/settings/api](https://www.themoviedb.org/settings/api)
+1. Acesse [https://www.themoviedb.org/](https://www.themoviedb.org/)
 2. Crie uma conta ou faça login
-3. Solicite uma API Key (chave de API)
-4. Copie o arquivo `.env.example` para `.env`:
+3. Acesse as configurações da conta
+4. Navegue até a seção "API"
+5. Solicite uma chave de API (tipo "Developer")
+6. Copie a chave gerada
+
+### Variáveis de Ambiente
+
+Crie um arquivo `.env` na raiz do projeto com as seguintes variáveis:
 
 ```bash
-cp .env.example .env
-```
-
-5. Edite o arquivo `.env` e adicione sua chave de API:
-
-```bash
-VITE_TMDB_API_KEY=sua-chave-api-aqui
 VITE_TMDB_URL=https://api.themoviedb.org/3
-VITE_TMDB_IMAGE_URL=https://image.tmdb.org/t/p/
+VITE_TMDB_API_KEY=sua_chave_api_aqui
+VITE_TMDB_IMAGE_URL=https://image.tmdb.org/t/p
 ```
 
-**Nota:** A API do TMDB é gratuita, mas requer registro e aprovação da chave de API.
+**Exemplo de `.env.example`:**
+
+```bash
+VITE_TMDB_URL=https://api.themoviedb.org/3
+VITE_TMDB_API_KEY=your_api_key_here
+VITE_TMDB_IMAGE_URL=https://image.tmdb.org/t/p
+```
 
 ## Instalação e Execução
 
@@ -61,45 +66,33 @@ VITE_TMDB_IMAGE_URL=https://image.tmdb.org/t/p/
 
 ### Instalação
 
-Clone o repositório e instale as dependências:
-
 ```bash
-git clone <repository-url>
-cd movie
 npm install
 ```
 
 ### Execução em Desenvolvimento
 
-Execute o servidor de desenvolvimento:
-
 ```bash
 npm run dev
 ```
 
-A aplicação estará disponível em `http://localhost:5173` (ou outra porta indicada pelo Vite).
+A aplicação estará disponível em `http://localhost:5173`
 
 ### Build para Produção
-
-Gere o build de produção:
 
 ```bash
 npm run build
 ```
 
-Os arquivos otimizados serão gerados na pasta `dist/`.
+Os arquivos otimizados serão gerados na pasta `dist/`
 
-### Preview do Build
-
-Visualize o build de produção localmente:
+### Preview da Build
 
 ```bash
 npm run preview
 ```
 
 ### Linting
-
-Execute o linter para verificar o código:
 
 ```bash
 npm run lint
@@ -109,31 +102,36 @@ npm run lint
 
 ### Core
 
-- **React 19.2.0**: Biblioteca para construção de interfaces
+- **React**: Biblioteca para construção de interfaces
 - **TypeScript**: Superset do JavaScript com tipagem estática
-- **Vite 7.2.2**: Build tool e dev server
+- **Vite**: Build tool e dev server
 
 ### Roteamento
 
-- **React Router 7.9.5**: Gerenciamento de rotas e navegação
+- **React Router**: Gerenciamento de rotas e navegação
 
-### Gerenciamento de Estado e Requisições
+### Gerenciamento de Estado e Dados
 
-- **TanStack React Query 5.90.7**: Gerenciamento de estado do servidor, cache e sincronização de dados
-- **Axios 1.13.2**: Cliente HTTP para requisições à API
+- **TanStack Query**: Gerenciamento de estado do servidor, cache e sincronização
+- **Context API**: Gerenciamento de estado global para favoritos
 
 ### Estilização
 
-- **Tailwind CSS 4.1.17**: Framework CSS utility-first
-- **Lucide React 0.553.0**: Biblioteca de ícones
+- **Tailwind CSS**: Framework CSS utility-first
+- **Lucide React**: Biblioteca de ícones
+
+### Requisições HTTP
+
+- **Axios**: Cliente HTTP para requisições à API
 
 ### Testes
 
-- **Jest 30.2.0**: Framework de testes
-- **React Testing Library 16.3.0**: Utilitários para testes de componentes React
+- **Jest**: Framework de testes
+- **React Testing Library**: Utilitários para testes de componentes React
 - **@testing-library/jest-dom**: Matchers customizados para Jest
 - **@testing-library/user-event**: Simulação de interações do usuário
-- **ts-jest**: Transpilador TypeScript para Jest
+- **ts-jest**: Preset TypeScript para Jest
+- **jest-environment-jsdom**: Ambiente DOM para testes
 
 ### Ferramentas de Desenvolvimento
 
@@ -146,65 +144,63 @@ Este projeto demonstra os seguintes aspectos técnicos:
 
 ### Uso Correto de Hooks
 
-- Hooks customizados para lógica reutilizável (`useFavorites`, `usePopularMovies`, `useMovieById`, etc.)
-- Hooks do React Router (`useParams`, `useNavigate`, `useSearchParams`)
-- Hooks do TanStack React Query (`useInfiniteQuery`, `useQuery`)
-- Hooks de UI customizados (`useIntersectionObserver`, `useGlowEffect`)
+- Custom hooks para consumo de API (`usePopularMovies`, `useMovieById`, `useMovieByQuery`, `useFavoriteMovies`)
+- Hooks de UI (`useIntersectionObserver`, `useFavorites`, `useGlowEffect`)
+- Uso adequado de hooks nativos do React (`useState`, `useEffect`, `useCallback`, `useLayoutEffect`, `useRef`)
 
 ### Gerenciamento de Estado Global
 
-- TanStack React Query para estado do servidor (cache, sincronização, invalidação)
-- LocalStorage com hook customizado para persistência de favoritos
-- Estado local quando apropriado
+- Context API implementado para gerenciamento de favoritos (`FavoritesContext`)
+- Persistência de estado em localStorage
+- TanStack Query para gerenciamento de estado do servidor e cache
 
 ### Consumo e Manipulação de APIs REST
 
-- Cliente Axios configurado com baseURL e headers de autenticação
-- Integração com a API do TMDB
-- Tratamento de respostas paginadas com infinite queries
-- Transformação e tipagem de dados da API
+- Cliente Axios configurado com interceptors
+- Integração com API do TMDB
+- Tratamento de respostas paginadas
+- Infinite queries para scroll infinito
+- Queries com parâmetros dinâmicos
 
 ### Roteamento e Navegação
 
-- React Router para navegação entre páginas
-- Rotas protegidas e parâmetros dinâmicos
-- Navegação programática com `useNavigate`
-- Query parameters para busca e filtros
+- React Router configurado com rotas aninhadas
+- Layout compartilhado entre rotas
+- Navegação programática
+- Parâmetros de rota e query strings
 
 ### Tratamento de Erros e Loading States
 
-- Estados de loading (`isPending`, `isLoading`, `isFetchingNextPage`)
-- Tratamento de erros com feedback visual
-- Estados vazios (sem favoritos, sem resultados de busca)
-- Fallbacks para dados não disponíveis
+- Componentes de erro reutilizáveis com opção de retry
+- Componentes de loading com labels personalizáveis
+- Estados de loading, error e success gerenciados pelo TanStack Query
+- Mensagens de erro contextuais
 
 ### Organização e Estrutura de Código
 
-- Separação de responsabilidades (hooks, components, pages, lib, types)
-- Componentes reutilizáveis e modulares
-- Tipagem TypeScript completa
-- Configuração centralizada (axios, query-client)
+- Separação clara de responsabilidades
+- Estrutura de pastas organizada por feature
+- Componentes reutilizáveis
+- Hooks customizados para lógica de negócio
+- Tipos TypeScript bem definidos
+- Configurações centralizadas (axios, query-client)
 
 ### Responsividade
 
-- Layout adaptativo com Tailwind CSS
-- Grid responsivo (1 coluna em mobile, 2 em tablet, 3 em desktop)
-- Componentes que se adaptam a diferentes tamanhos de tela
-- Imagens responsivas
+- Design mobile-first
+- Grid responsivo com breakpoints
+- Componentes adaptáveis a diferentes tamanhos de tela
+- Navegação otimizada para mobile e desktop
 
 ## Testes
 
 ### Executar Testes em Modo Watch
 
-Execute os testes em modo watch para desenvolvimento:
-
 ```bash
 npm test
 ```
 
-### Executar Testes em CI
-
-Execute os testes uma vez (útil para CI/CD):
+### Executar Testes uma Vez (CI)
 
 ```bash
 npm run test:ci
@@ -212,35 +208,89 @@ npm run test:ci
 
 ### Estrutura de Testes
 
-Os testes estão localizados junto aos componentes, seguindo o padrão `*.test.tsx`:
+Os testes estão organizados junto aos componentes e hooks, seguindo o padrão `*.test.tsx` ou `*.test.ts`. A configuração do Jest utiliza:
 
-- `src/components/rating/rating.test.tsx`
+- Ambiente jsdom para simulação do DOM
+- Setup automático com `@testing-library/jest-dom`
+- Suporte a TypeScript e ES Modules
+- Transformação com ts-jest
 
-A configuração do Jest está em `jest.config.js` e utiliza:
-- `ts-jest` para transpilação TypeScript
-- `jsdom` como ambiente de testes
-- `@testing-library/jest-dom` para matchers customizados
-- Setup automático via `src/setupTests.ts`
+### Exemplos de Cobertura
+
+- Testes de componentes (`Layout`, `Header`, `Error`, `Loading`, `MovieCard`, etc.)
+- Testes de hooks customizados
+- Testes de funcionalidades de favoritos
+- Testes de ordenação
 
 ## Deploy
 
-A aplicação está hospedada em [https://movie.luislab.xyz](https://movie.luislab.xyz).
+A aplicação está configurada para deploy usando Docker e Nginx.
 
 ### Build com Docker
-
-O projeto inclui um `Dockerfile` para containerização:
 
 ```bash
 docker build \
   --build-arg VITE_TMDB_URL=https://api.themoviedb.org/3 \
-  --build-arg VITE_TMDB_API_KEY=sua-chave-api \
-  --build-arg VITE_TMDB_IMAGE_URL=https://image.tmdb.org/t/p/ \
+  --build-arg VITE_TMDB_API_KEY=sua_chave_api \
+  --build-arg VITE_TMDB_IMAGE_URL=https://image.tmdb.org/t/p \
   -t movie-app .
 ```
 
-O container utiliza Nginx para servir os arquivos estáticos do build.
+### Executar Container
+
+```bash
+docker run -p 80:80 movie-app
+```
+
+### Deploy em Produção
+
+A aplicação está hospedada em: [https://movie.luislab.xyz](https://movie.luislab.xyz)
+
+O deploy utiliza:
+- Build multi-stage com Docker
+- Nginx como servidor web
+- Configuração de SPA (Single Page Application) com fallback para `index.html`
+- Cache otimizado para assets estáticos
+- Compressão gzip habilitada
+
+## Estrutura do Projeto
+
+```
+movie/
+├── dist/                 # Build de produção
+├── public/               # Arquivos estáticos públicos
+├── src/
+│   ├── components/       # Componentes React reutilizáveis
+│   │   ├── favorite/     # Componentes relacionados a favoritos
+│   │   ├── layout/       # Componentes de layout (Header, Error, Loading)
+│   │   ├── movie/        # Componentes relacionados a filmes
+│   │   ├── rating/       # Componente de avaliação
+│   │   └── search-input/ # Componente de busca
+│   ├── contexts/         # Context API providers
+│   │   └── favorites/    # Context de favoritos
+│   ├── hooks/            # Custom hooks
+│   │   ├── ui/           # Hooks de UI
+│   │   └── *.ts          # Hooks de API
+│   ├── lib/              # Configurações e utilitários
+│   │   ├── axios.ts      # Cliente HTTP configurado
+│   │   └── query-client.ts # Configuração do TanStack Query
+│   ├── pages/            # Páginas da aplicação
+│   │   ├── favorites/    # Página de favoritos
+│   │   ├── home/         # Página inicial
+│   │   ├── movie/id/     # Página de detalhes do filme
+│   │   └── search/       # Página de busca
+│   ├── test/             # Configurações e helpers de teste
+│   ├── types/            # Definições de tipos TypeScript
+│   ├── index.css         # Estilos globais e tema
+│   ├── main.tsx          # Ponto de entrada da aplicação
+│   └── router.tsx        # Configuração de rotas
+├── Dockerfile            # Configuração Docker
+├── nginx.conf            # Configuração Nginx
+├── jest.config.js        # Configuração Jest
+├── vite.config.ts        # Configuração Vite
+└── package.json          # Dependências e scripts
+```
 
 ## Licença
 
 MIT
-
