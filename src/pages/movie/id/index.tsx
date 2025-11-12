@@ -61,7 +61,7 @@ export function MoviePage() {
 
   return (
     <div ref={containerRef}>
-      <div className="relative h-dvh overflow-hidden">
+      <div className="relative min-h-dvh overflow-hidden">
         {backdropUrl && (
           <>
             <div

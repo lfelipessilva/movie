@@ -14,7 +14,15 @@ export function MovieCard({ movie }: { movie: PopularMovie | Movie}) {
     <article
       className="relative flex flex-col sm:flex-row gap-4 p-4 rounded-md mt-24 shadow-lg bg-surface-primary cursor-pointer"
       onMouseMove={handleMove}
+      tabIndex={0}
+      role="button"
+      aria-label={`Ver detalhes de ${movie.title}`}
       onClick={() => navigate(`/movie/${movie.id}`)}
+      onKeyDown={e => {
+        if (e.key === "Enter" || e.key === " ") {
+          navigate(`/movie/${movie.id}`);
+        }
+      }}
     >
       <div
         ref={setGlowRef}
