@@ -5,6 +5,17 @@ import LanguageDetector from "i18next-browser-languagedetector";
 import enTranslations from "../locales/en/translation.json";
 import ptTranslations from "../locales/pt/translation.json";
 
+const convertDetectedLanguage = (lng: string): string => {
+  const supportedLanguages = ["en", "pt"];
+  const normalizedLng = lng.toLowerCase().split("-")[0];
+  
+  if (supportedLanguages.includes(normalizedLng)) {
+    return normalizedLng;
+  }
+  
+  return "en";
+};
+
 i18n
   .use(LanguageDetector)
   .use(initReactI18next)
@@ -26,6 +37,7 @@ i18n
       order: ["localStorage", "navigator"],
       caches: ["localStorage"],
       lookupLocalStorage: "i18nextLng",
+      convertDetectedLanguage,
     },
   });
 
