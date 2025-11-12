@@ -76,7 +76,7 @@ export function MovieCard({ movie }: { movie: PopularMovie | Movie }) {
             className="text-text-secondary pt-4 line-clamp-5"
             title={movie.overview}
           >
-            {movie.overview || "Sinpse não disponível"}
+            {movie.overview || "Sinopse não disponível"}
           </p>
         </div>
         <FavoriteButton movieId={movie.id} variant="compact" />

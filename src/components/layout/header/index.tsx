@@ -6,34 +6,37 @@ export function Header() {
 
   return (
     <header className="flex flex-col sm:flex-row justify-between items-center gap-4 p-4">
-      <nav>
-        <ul className="flex gap-4">
-          <li>
-            <Link
-              to="/"
-              className={`text-lg sm:text-2xl font-bold hover:opacity-80 ${
-                pathname === "/" ? "text-accent-primary" : "text-text-primary"
-              }`}
-              aria-current={pathname === "/" ? "page" : undefined}
-            >
-              Home
-            </Link>
-          </li>
-          <li>
-            <Link
-              to="/favorites"
-              className={`text-lg sm:text-2xl font-bold hover:opacity-80 ${
-                pathname === "/favorites"
-                  ? "text-accent-primary"
-                  : "text-text-primary"
-              }`}
-              aria-current={pathname === "/favorites" ? "page" : undefined}
-            >
-              Favoritos
-            </Link>
-          </li>
-        </ul>
-      </nav>
+      <section className="flex w-full items-center justify-between sm:justify-start  gap-8">
+        <img src="/logo.svg" alt="Movie" className="w-10 h-10" />
+        <nav>
+          <ul className="flex gap-4">
+            <li>
+              <Link
+                to="/"
+                className={`text-lg sm:text-2xl font-bold hover:opacity-80 ${
+                  pathname === "/" ? "text-accent-primary" : "text-text-primary"
+                }`}
+                aria-current={pathname === "/" ? "page" : undefined}
+              >
+                Home
+              </Link>
+            </li>
+            <li>
+              <Link
+                to="/favorites"
+                className={`text-lg sm:text-2xl font-bold hover:opacity-80 ${
+                  pathname === "/favorites"
+                    ? "text-accent-primary"
+                    : "text-text-primary"
+                }`}
+                aria-current={pathname === "/favorites" ? "page" : undefined}
+              >
+                Favoritos
+              </Link>
+            </li>
+          </ul>
+        </nav>
+      </section>
       <SearchInput pathname={pathname} />
     </header>
   );

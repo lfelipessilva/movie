@@ -11,16 +11,22 @@ const config = {
       'ts-jest',
       {
         useESM: true,
+        isolatedModules: true,
         tsconfig: {
           jsx: 'react-jsx',
           module: 'ESNext',
           target: 'ES2022',
           types: ['jest', '@testing-library/jest-dom', 'node'],
+          moduleResolution: 'node',
+          esModuleInterop: true,
+          allowSyntheticDefaultImports: true,
+          skipLibCheck: true,
+          outDir: 'dist',
         },
       },
     ],
   },
-  setupFilesAfterEnv: ['<rootDir>/src/setupTests.ts'],
+  setupFilesAfterEnv: ['<rootDir>/src/test/setupTests.ts'],
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json'],
   testMatch: ['**/__tests__/**/*.[jt]s?(x)', '**/?(*.)+(spec|test).[jt]s?(x)'],
 };
