@@ -1,4 +1,5 @@
 import { useCallback } from "react";
+import { useTranslation } from "react-i18next";
 import { MovieCard } from "../../components/movie/card";
 import { usePopularMovies } from "../../hooks/get-popular-movies";
 import { useIntersectionObserver } from "../../hooks/ui/use-intersection-observer";
@@ -6,6 +7,7 @@ import { Loading } from "../../components/layout/loading";
 import { Error } from "../../components/layout/error";
 
 export function HomePage() {
+  const { t } = useTranslation();
   const {
     data,
     error,
@@ -28,13 +30,13 @@ export function HomePage() {
   });
 
   if (isPending) {
-    return <Loading label="filmes" />;
+    return <Loading label={t("labels.movies")} />;
   }
 
   if (error) {
     return (
       <Error
-        message="Erro ao carregar filmes"
+        message={t("error.loadMovies")}
         onRetry={refetch}
       />
     );
@@ -55,10 +57,10 @@ export function HomePage() {
           aria-live="polite"
         >
           {isFetchingNextPage
-            ? "Carregando mais filmes..."
+            ? t("loading.loadingMore")
             : hasNextPage
-            ? "Scroll para mais filmes"
-            : "Você chegou ao final da lista de filmes"}
+            ? t("loading.scrollForMore")
+            : t("loading.endOfList")}
         </div>
       </div>
     </div>

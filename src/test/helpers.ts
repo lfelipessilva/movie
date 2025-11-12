@@ -1,5 +1,9 @@
 import { QueryClient } from "@tanstack/react-query";
 import type { PopularMovie, Movie } from "../types/movie";
+import i18n from "../lib/i18n";
+import { initReactI18next } from "react-i18next";
+import enTranslations from "../locales/en/translation.json";
+import ptTranslations from "../locales/pt/translation.json";
 
 export function createTestQueryClient() {
   return new QueryClient({
@@ -10,6 +14,41 @@ export function createTestQueryClient() {
       },
     },
   });
+}
+
+let testI18nInstance: ReturnType<typeof i18n.createInstance> | null = null;
+
+export function createTestI18nInstance() {
+  const testI18n = i18n.createInstance();
+  testI18n.use(initReactI18next).init({
+    resources: {
+      en: {
+        translation: enTranslations,
+      },
+      pt: {
+        translation: ptTranslations,
+      },
+    },
+    lng: "en",
+    fallbackLng: "en",
+    defaultNS: "translation",
+    interpolation: {
+      escapeValue: false,
+    },
+  });
+  testI18nInstance = testI18n;
+  return testI18n;
+}
+
+export function getTestI18nInstance() {
+  if (!testI18nInstance) {
+    return createTestI18nInstance();
+  }
+  return testI18nInstance;
+}
+
+export function resetTestI18nInstance() {
+  testI18nInstance = null;
 }
 
 export function setupFavorites(initialFavorites: number[] = []) {

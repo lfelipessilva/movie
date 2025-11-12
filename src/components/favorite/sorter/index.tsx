@@ -1,5 +1,6 @@
 import { ChevronDown, ChevronUp } from "lucide-react";
 import { useSearchParams } from "react-router";
+import { useTranslation } from "react-i18next";
 
 export function FavoriteSorter({
   sortBy,
@@ -8,6 +9,7 @@ export function FavoriteSorter({
   sortBy: "title" | "rating" | null;
   order: "asc" | "desc" | null;
 }) {
+  const { t } = useTranslation();
   const [, setSearchParams] = useSearchParams();
 
   const handleSortBy = (by: "title" | "rating") => {
@@ -28,17 +30,17 @@ export function FavoriteSorter({
   const ratingOrder = isRatingActive ? order : null;
 
   const getTitleLabel = () => {
-    if (!isTitleActive) return "Ordenar por título";
-    if (titleOrder === "asc") return "Ordenado por título (crescente), clique para ordenar decrescente";
-    if (titleOrder === "desc") return "Ordenado por título (decrescente), clique para remover ordenação";
-    return "Ordenar por título";
+    if (!isTitleActive) return t("sorter.sortByTitle");
+    if (titleOrder === "asc") return t("sorter.sortedByTitleAsc");
+    if (titleOrder === "desc") return t("sorter.sortedByTitleDesc");
+    return t("sorter.sortByTitle");
   };
 
   const getRatingLabel = () => {
-    if (!isRatingActive) return "Ordenar por nota";
-    if (ratingOrder === "asc") return "Ordenado por nota (crescente), clique para ordenar decrescente";
-    if (ratingOrder === "desc") return "Ordenado por nota (decrescente), clique para remover ordenação";
-    return "Ordenar por nota";
+    if (!isRatingActive) return t("sorter.sortByRating");
+    if (ratingOrder === "asc") return t("sorter.sortedByRatingAsc");
+    if (ratingOrder === "desc") return t("sorter.sortedByRatingDesc");
+    return t("sorter.sortByRating");
   };
 
   return (
@@ -51,7 +53,7 @@ export function FavoriteSorter({
         aria-label={getTitleLabel()}
         aria-pressed={isTitleActive}
       >
-        Título
+        {t("sorter.title")}
         {sortBy === "title" && order === "asc" ? (
           <ChevronUp className="w-4 h-4" aria-hidden="true" />
         ) : sortBy === "title" && order === "desc" ? (
@@ -66,7 +68,7 @@ export function FavoriteSorter({
         aria-label={getRatingLabel()}
         aria-pressed={isRatingActive}
       >
-        Nota
+        {t("sorter.rating")}
         {sortBy === "rating" && order === "asc" ? (
           <ChevronUp className="w-4 h-4" aria-hidden="true" />
         ) : sortBy === "rating" && order === "desc" ? (

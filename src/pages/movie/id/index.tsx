@@ -1,5 +1,6 @@
 import { useLayoutEffect, useRef } from "react";
 import { useParams, useNavigate } from "react-router";
+import { useTranslation } from "react-i18next";
 import { useMovieById } from "../../../hooks/get-movie-by-id";
 import { useMovieImage } from "../../../hooks/get-movie-image";
 import { Rating } from "../../../components/rating";
@@ -11,6 +12,7 @@ import { Error } from "../../../components/layout/error";
 export function MoviePage() {
   const { id } = useParams();
   const navigate = useNavigate();
+  const { t, i18n } = useTranslation();
 
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -32,14 +34,14 @@ export function MoviePage() {
 
   if (isLoading) {
     return (
-      <Loading label="filme" />
+      <Loading label={t("labels.movie")} />
     );
   }
 
   if (error) {
     return (
       <Error
-        message="Erro ao carregar filme"
+        message={t("error.loadMovie")}
         onRetry={refetch}
         showHomeButton
       />
@@ -50,12 +52,12 @@ export function MoviePage() {
     return (
       <div ref={containerRef} className="min-h-screen flex items-center justify-center">
         <div className="text-center">
-          <h1 className="text-2xl font-bold mb-4">Filme não encontrado</h1>
+          <h1 className="text-2xl font-bold mb-4">{t("movie.notFound")}</h1>
           <button
             onClick={() => navigate("/")}
             className="bg-accent-primary hover:bg-accent-primary-hover text-white px-6 py-2 rounded-md"
           >
-            Voltar para Home
+            {t("error.goHome")}
           </button>
         </div>
       </div>
@@ -63,7 +65,8 @@ export function MoviePage() {
   }
 
   const releaseDate = new Date(data.release_date);
-  const formattedDate = releaseDate.toLocaleDateString("pt-BR", {
+  const locale = i18n.language === "pt" ? "pt-BR" : "en-US";
+  const formattedDate = releaseDate.toLocaleDateString(locale, {
     day: "2-digit",
     month: "long",
     year: "numeric",
@@ -93,10 +96,10 @@ export function MoviePage() {
             <button
               onClick={() => navigate(-1)}
               className="mb-8 flex items-center gap-2 text-text-primary hover:text-text-secondary transition-colors"
-              aria-label="Voltar para página anterior"
+              aria-label={t("movie.backAriaLabel")}
             >
               <ArrowLeft className="w-5 h-5" aria-hidden="true" />
-              <span>Voltar</span>
+              <span>{t("movie.back")}</span>
             </button>
 
             <div className="flex gap-8 max-w-7xl">
@@ -132,12 +135,12 @@ export function MoviePage() {
                   <div className="flex flex-wrap items-center gap-4 mb-6 text-text-secondary">
                     <div>
                       <span className="font-semibold">
-                        Data de Lançamento:{" "}
+                        {t("movie.releaseDate")}:{" "}
                       </span>
                       {formattedDate}
                     </div>
                     <div className="flex items-center gap-2">
-                      <span className="font-semibold">Nota: </span>
+                      <span className="font-semibold">{t("movie.rating")}: </span>
                       <Rating
                         rating={data.vote_average}
                         quantity={data.vote_count}
@@ -152,10 +155,10 @@ export function MoviePage() {
 
                 <div>
                   <h2 className="text-xl sm:text-2xl font-bold mb-3 text-text-primary">
-                    Sinopse
+                    {t("movie.synopsis")}
                   </h2>
                   <p className="text-md md:text-lg text-text-secondary leading-relaxed max-w-3xl">
-                    {data.overview || "Sinopse não disponível."}
+                    {data.overview || t("movie.synopsisNotAvailable")}
                   </p>
                 </div>
               </div>

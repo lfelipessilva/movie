@@ -1,4 +1,5 @@
 import { Heart } from "lucide-react";
+import { useTranslation } from "react-i18next";
 import { useFavorites } from "../../../hooks/ui/use-favorites";
 
 interface FavoriteButtonProps {
@@ -10,6 +11,7 @@ export function FavoriteButton({
   movieId,
   variant = "full",
 }: FavoriteButtonProps) {
+  const { t } = useTranslation();
   const { isFavorite, toggleFavorite } = useFavorites();
   const favorited = isFavorite(movieId);
 
@@ -33,10 +35,10 @@ export function FavoriteButton({
             ? `${favoritedClasses} border border-accent-primary`
             : unfavoritedClasses
         }`}
-        title={favorited ? "Remover dos favoritos" : "Adicionar aos favoritos"}
+        title={favorited ? t("favorite.remove") : t("favorite.add")}
       >
         <Heart className={`w-4 h-4 ${heartFillClass}`} aria-hidden="true" />
-        <span className="text-sm">{favorited ? "Favorito" : "Favoritar"}</span>
+        <span className="text-sm">{favorited ? t("favorite.favorited") : t("favorite.favorite")}</span>
       </button>
     );
   }
@@ -47,10 +49,10 @@ export function FavoriteButton({
       className={`flex items-center gap-2 px-8 py-3 rounded-md font-semibold transition-colors ${
         favorited ? favoritedClasses : unfavoritedClasses
       }`}
-      aria-label={favorited ? "Remover dos favoritos" : "Adicionar aos favoritos"}
+      aria-label={favorited ? t("favorite.remove") : t("favorite.add")}
     >
       <Heart className={`w-5 h-5 ${heartFillClass}`} aria-hidden="true" />
-      <span>{favorited ? "Remover dos Favoritos" : "Favoritar"}</span>
+      <span>{favorited ? t("favorite.unfavorite") : t("favorite.favorite")}</span>
     </button>
   );
 }

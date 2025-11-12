@@ -1,21 +1,22 @@
-import { render, screen } from "@testing-library/react";
+import { screen } from "@testing-library/react";
 import { Loading } from "./index";
+import { renderWithProviders } from "../../../test";
 
 describe("Loading", () => {
   it("renders spinner element", () => {
-    const { container } = render(<Loading label="filmes" />);
+    const { container } = renderWithProviders(<Loading label="movies" />);
     const spinner = container.querySelector(".animate-spin");
     expect(spinner).toBeInTheDocument();
   });
 
   it("renders label text", () => {
-    render(<Loading label="filmes" />);
+    renderWithProviders(<Loading label="movies" />);
 
-    expect(screen.getByText("Carregando filmes...")).toBeInTheDocument();
+    expect(screen.getByText("Loading movies...")).toBeInTheDocument();
   });
 
   it("applies correct CSS classes", () => {
-    const { container } = render(<Loading label="filmes" />);
+    const { container } = renderWithProviders(<Loading label="movies" />);
 
     const spinner = container.querySelector(".animate-spin");
 

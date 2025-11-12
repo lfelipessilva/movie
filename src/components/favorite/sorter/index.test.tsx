@@ -18,8 +18,8 @@ describe("FavoriteSorter", () => {
       initialEntries: ["/favorites"],
     });
 
-    expect(screen.getByRole("button", { name: /título/i })).toBeInTheDocument();
-    expect(screen.getByRole("button", { name: /nota/i })).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: /title/i })).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: /rating/i })).toBeInTheDocument();
   });
 
   it("initial state: no active sorting", () => {
@@ -27,8 +27,8 @@ describe("FavoriteSorter", () => {
       initialEntries: ["/favorites"],
     });
 
-    const titleButton = screen.getByRole("button", { name: /título/i });
-    const ratingButton = screen.getByRole("button", { name: /nota/i });
+    const titleButton = screen.getByRole("button", { name: /title/i });
+    const ratingButton = screen.getByRole("button", { name: /rating/i });
 
     expect(titleButton).toHaveAttribute("aria-pressed", "false");
     expect(ratingButton).toHaveAttribute("aria-pressed", "false");
@@ -41,7 +41,7 @@ describe("FavoriteSorter", () => {
 
     expect(
       screen.getByRole("button", {
-        name: /ordenado por título \(decrescente\)/i,
+        name: /sorted by title \(descending\)/i,
       })
     ).toBeInTheDocument();
   });
@@ -53,7 +53,7 @@ describe("FavoriteSorter", () => {
 
     expect(
       screen.getByRole("button", {
-        name: /ordenado por título \(crescente\)/i,
+        name: /sorted by title \(ascending\)/i,
       })
     ).toBeInTheDocument();
   });
@@ -65,7 +65,7 @@ describe("FavoriteSorter", () => {
 
     expect(
       screen.getByRole("button", {
-        name: /ordenado por nota \(decrescente\)/i,
+        name: /sorted by rating \(descending\)/i,
       })
     ).toBeInTheDocument();
   });
@@ -77,7 +77,7 @@ describe("FavoriteSorter", () => {
 
     expect(
       screen.getByRole("button", {
-        name: /ordenado por nota \(crescente\)/i,
+        name: /sorted by rating \(ascending\)/i,
       })
     ).toBeInTheDocument();
   });
@@ -91,7 +91,7 @@ describe("FavoriteSorter", () => {
     const buttons = container.querySelectorAll("button");
 
     const titleButton = Array.from(buttons).find((btn: Element) =>
-      btn.textContent?.includes("Título")
+      btn.textContent?.includes("Title")
     );
 
     expect(titleButton).toHaveClass("bg-accent-primary");
@@ -115,7 +115,7 @@ describe("FavoriteSorter", () => {
       initialEntries: ["/favorites?sortBy=title&order=desc"],
     });
 
-    const titleButton = screen.getByRole("button", { name: /título/i });
+    const titleButton = screen.getByRole("button", { name: /title/i });
 
     expect(titleButton).toHaveAttribute("aria-pressed", "true");
   });
@@ -125,7 +125,7 @@ describe("FavoriteSorter", () => {
       initialEntries: ["/favorites"],
     });
 
-    const titleButton = screen.getByRole("button", { name: /título/i });
+    const titleButton = screen.getByRole("button", { name: /title/i });
 
     expect(titleButton).toHaveAttribute("aria-pressed", "false");
   });

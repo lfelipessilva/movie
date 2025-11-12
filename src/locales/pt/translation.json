@@ -1,0 +1,69 @@
+{
+  "nav": {
+    "home": "Home",
+    "favorites": "Favoritos"
+  },
+  "loading": {
+    "loading": "Carregando {{label}}...",
+    "loadingMore": "Carregando mais filmes...",
+    "scrollForMore": "Scroll para mais filmes",
+    "endOfList": "Você chegou ao final da lista de filmes"
+  },
+  "error": {
+    "title": "Ops! Algo deu errado",
+    "retry": "Tentar novamente",
+    "goHome": "Voltar para Home",
+    "error": "Erro",
+    "loadMovies": "Erro ao carregar filmes",
+    "loadFavorites": "Ocorreu um erro ao carregar seus filmes favoritos",
+    "loadMovie": "Erro ao carregar filme",
+    "loadSearch": "Erro ao carregar resultados da pesquisa"
+  },
+  "movie": {
+    "notFound": "Filme não encontrado",
+    "releaseDate": "Data de Lançamento",
+    "rating": "Nota",
+    "synopsis": "Sinopse",
+    "synopsisNotAvailable": "Sinopse não disponível.",
+    "back": "Voltar",
+    "backAriaLabel": "Voltar para página anterior"
+  },
+  "favorite": {
+    "add": "Adicionar aos favoritos",
+    "remove": "Remover dos favoritos",
+    "favorite": "Favoritar",
+    "favorited": "Favorito",
+    "unfavorite": "Remover dos Favoritos",
+    "none": "Nenhum filme favorito",
+    "noneDescription": "Adicione filmes aos favoritos para vê-los aqui"
+  },
+  "search": {
+    "placeholder": "Pesquisar",
+    "ariaLabel": "Pesquisar filmes",
+    "clear": "Limpar pesquisa",
+    "noResults": "Nenhum resultado encontrado",
+    "noResultsDescription": "Não foram encontrados filmes para \"{{query}}\"",
+    "noQuery": "Digite um termo de pesquisa para buscar filmes"
+  },
+  "sorter": {
+    "title": "Título",
+    "rating": "Nota",
+    "sortByTitle": "Ordenar por título",
+    "sortByRating": "Ordenar por nota",
+    "sortedByTitleAsc": "Ordenado por título (crescente), clique para ordenar decrescente",
+    "sortedByTitleDesc": "Ordenado por título (decrescente), clique para remover ordenação",
+    "sortedByRatingAsc": "Ordenado por nota (crescente), clique para ordenar decrescente",
+    "sortedByRatingDesc": "Ordenado por nota (decrescente), clique para remover ordenação"
+  },
+  "rating": {
+    "reviews": "{{count}} avaliações",
+    "ariaLabel": "Avaliação: {{rating}} de 10, baseado em {{count}} avaliações"
+  },
+  "labels": {
+    "movies": "filmes",
+    "favoriteMovies": "filmes favoritos",
+    "movie": "filme",
+    "searchResults": "resultados da pesquisa"
+  }
+}
+

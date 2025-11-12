@@ -1,8 +1,11 @@
 import { Link, useLocation } from "react-router";
+import { useTranslation } from "react-i18next";
 import { SearchInput } from "../../search-input";
+import { LanguageSwitcher } from "../../language-switcher";
 
 export function Header() {
   const { pathname } = useLocation();
+  const { t } = useTranslation();
 
   return (
     <header className="flex flex-col sm:flex-row justify-between items-center gap-4 p-4">
@@ -18,7 +21,7 @@ export function Header() {
                 }`}
                 aria-current={pathname === "/" ? "page" : undefined}
               >
-                Home
+                {t("nav.home")}
               </Link>
             </li>
             <li>
@@ -31,11 +34,12 @@ export function Header() {
                 }`}
                 aria-current={pathname === "/favorites" ? "page" : undefined}
               >
-                Favoritos
+                {t("nav.favorites")}
               </Link>
             </li>
           </ul>
         </nav>
+        <LanguageSwitcher />
       </section>
       <SearchInput pathname={pathname} />
     </header>

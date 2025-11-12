@@ -52,7 +52,7 @@ describe("MovieCard", () => {
     renderWithProviders(<MovieCard movie={movie} />);
 
     expect(screen.getByText("8.5")).toBeInTheDocument();
-    expect(screen.getByText("100 avaliações")).toBeInTheDocument();
+    expect(screen.getByText("100 reviews")).toBeInTheDocument();
   });
 
   it("renders movie overview", () => {
@@ -99,7 +99,7 @@ describe("MovieCard", () => {
     renderWithProviders(<MovieCard movie={movie} />);
 
     const favoriteButton = screen.getByRole("button", {
-      name: /favoritar/i,
+      name: /favorite/i,
     });
 
     expect(favoriteButton).toBeInTheDocument();

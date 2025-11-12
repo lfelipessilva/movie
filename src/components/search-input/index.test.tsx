@@ -16,7 +16,7 @@ describe("SearchInput", () => {
       initialEntries: ["/"],
     });
     expect(
-      screen.getByRole("textbox", { name: /pesquisar filmes/i })
+      screen.getByRole("textbox", { name: /search movies/i })
     ).toBeInTheDocument();
   });
 
@@ -34,7 +34,7 @@ describe("SearchInput", () => {
     });
 
     expect(
-      screen.getByRole("button", { name: /limpar pesquisa/i })
+      screen.getByRole("button", { name: /clear search/i })
     ).toBeInTheDocument();
   });
 
@@ -44,7 +44,7 @@ describe("SearchInput", () => {
     });
 
     expect(
-      screen.queryByRole("button", { name: /limpar pesquisa/i })
+      screen.queryByRole("button", { name: /clear search/i })
     ).not.toBeInTheDocument();
   });
 

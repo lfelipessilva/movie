@@ -12,10 +12,10 @@ describe("FavoriteButton", () => {
     it("renders correctly with unfavorited state", () => {
       renderWithProviders(<FavoriteButton movieId={1} variant="full" />);
 
-      expect(screen.getByText("Favoritar")).toBeInTheDocument();
+      expect(screen.getByText("Favorite")).toBeInTheDocument();
 
       expect(
-        screen.getByRole("button", { name: /adicionar aos favoritos/i })
+        screen.getByRole("button", { name: /add to favorites/i })
       ).toBeInTheDocument();
     });
 
@@ -29,11 +29,11 @@ describe("FavoriteButton", () => {
       await user.click(button);
 
       await waitFor(() => {
-        expect(screen.getByText("Remover dos Favoritos")).toBeInTheDocument();
+        expect(screen.getByText("Remove from Favorites")).toBeInTheDocument();
       });
 
       expect(
-        screen.getByRole("button", { name: /remover dos favoritos/i })
+        screen.getByRole("button", { name: /remove from favorites/i })
       ).toBeInTheDocument();
     });
 
@@ -44,15 +44,15 @@ describe("FavoriteButton", () => {
 
       const button = screen.getByRole("button");
 
-      expect(screen.getByText("Favoritar")).toBeInTheDocument();
+      expect(screen.getByText("Favorite")).toBeInTheDocument();
 
       await user.click(button);
 
-      expect(screen.getByText("Remover dos Favoritos")).toBeInTheDocument();
+      expect(screen.getByText("Remove from Favorites")).toBeInTheDocument();
 
       await user.click(button);
 
-      expect(screen.getByText("Favoritar")).toBeInTheDocument();
+      expect(screen.getByText("Favorite")).toBeInTheDocument();
     });
 
     it("applies correct CSS classes when favorited", async () => {
@@ -87,7 +87,7 @@ describe("FavoriteButton", () => {
     it("renders correctly with unfavorited state", () => {
       renderWithProviders(<FavoriteButton movieId={1} variant="compact" />);
 
-      expect(screen.getByText("Favoritar")).toBeInTheDocument();
+      expect(screen.getByText("Favorite")).toBeInTheDocument();
     });
 
     it("renders correctly with favorited state", async () => {
@@ -100,7 +100,7 @@ describe("FavoriteButton", () => {
       await user.click(button);
 
       await waitFor(() => {
-        expect(screen.getByText("Favorito")).toBeInTheDocument();
+        expect(screen.getByText("Favorited")).toBeInTheDocument();
       });
     });
 
@@ -111,15 +111,15 @@ describe("FavoriteButton", () => {
 
       const button = screen.getByRole("button");
 
-      expect(screen.getByText("Favoritar")).toBeInTheDocument();
+      expect(screen.getByText("Favorite")).toBeInTheDocument();
 
       await user.click(button);
 
-      expect(screen.getByText("Favorito")).toBeInTheDocument();
+      expect(screen.getByText("Favorited")).toBeInTheDocument();
 
       await user.click(button);
 
-      expect(screen.getByText("Favoritar")).toBeInTheDocument();
+      expect(screen.getByText("Favorite")).toBeInTheDocument();
     });
 
     it("applies correct CSS classes when favorited", async () => {
@@ -182,6 +182,6 @@ describe("FavoriteButton", () => {
 
     const button = screen.getByRole("button");
 
-    expect(button).toHaveAttribute("title", "Adicionar aos favoritos");
+    expect(button).toHaveAttribute("title", "Add to favorites");
   });
 });

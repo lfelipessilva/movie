@@ -1,0 +1,69 @@
+{
+  "nav": {
+    "home": "Home",
+    "favorites": "Favorites"
+  },
+  "loading": {
+    "loading": "Loading {{label}}...",
+    "loadingMore": "Loading more movies...",
+    "scrollForMore": "Scroll for more movies",
+    "endOfList": "You've reached the end of the movie list"
+  },
+  "error": {
+    "title": "Oops! Something went wrong",
+    "retry": "Try again",
+    "goHome": "Back to Home",
+    "error": "Error",
+    "loadMovies": "Error loading movies",
+    "loadFavorites": "An error occurred while loading your favorite movies",
+    "loadMovie": "Error loading movie",
+    "loadSearch": "Error loading search results"
+  },
+  "movie": {
+    "notFound": "Movie not found",
+    "releaseDate": "Release Date",
+    "rating": "Rating",
+    "synopsis": "Synopsis",
+    "synopsisNotAvailable": "Synopsis not available.",
+    "back": "Back",
+    "backAriaLabel": "Back to previous page"
+  },
+  "favorite": {
+    "add": "Add to favorites",
+    "remove": "Remove from favorites",
+    "favorite": "Favorite",
+    "favorited": "Favorited",
+    "unfavorite": "Remove from Favorites",
+    "none": "No favorite movies",
+    "noneDescription": "Add movies to favorites to see them here"
+  },
+  "search": {
+    "placeholder": "Search",
+    "ariaLabel": "Search movies",
+    "clear": "Clear search",
+    "noResults": "No results found",
+    "noResultsDescription": "No movies found for \"{{query}}\"",
+    "noQuery": "Enter a search term to search for movies"
+  },
+  "sorter": {
+    "title": "Title",
+    "rating": "Rating",
+    "sortByTitle": "Sort by title",
+    "sortByRating": "Sort by rating",
+    "sortedByTitleAsc": "Sorted by title (ascending), click to sort descending",
+    "sortedByTitleDesc": "Sorted by title (descending), click to remove sorting",
+    "sortedByRatingAsc": "Sorted by rating (ascending), click to sort descending",
+    "sortedByRatingDesc": "Sorted by rating (descending), click to remove sorting"
+  },
+  "rating": {
+    "reviews": "{{count}} reviews",
+    "ariaLabel": "Rating: {{rating}} out of 10, based on {{count}} reviews"
+  },
+  "labels": {
+    "movies": "movies",
+    "favoriteMovies": "favorite movies",
+    "movie": "movie",
+    "searchResults": "search results"
+  }
+}
+

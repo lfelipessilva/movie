@@ -1,4 +1,5 @@
 import { useSearchParams } from "react-router";
+import { useTranslation } from "react-i18next";
 import { useMovieByQuery } from "../../hooks/get-movie-by-query";
 import { MovieCard } from "../../components/movie/card";
 import { Loading } from "../../components/layout/loading";
@@ -7,6 +8,7 @@ import { useCallback } from "react";
 import { useIntersectionObserver } from "../../hooks/ui/use-intersection-observer";
 
 export function SearchPage() {
+  const { t } = useTranslation();
   const [searchParams] = useSearchParams();
   const q = searchParams.get("q");
   const {
@@ -31,13 +33,13 @@ export function SearchPage() {
   });
 
   if (isPending) {
-    return <Loading label="resultados da pesquisa" />;
+    return <Loading label={t("labels.searchResults")} />;
   }
 
   if (error) {
     return (
       <Error
-        message="Erro ao carregar resultados da pesquisa"
+        message={t("error.loadSearch")}
         onRetry={refetch}
         showHomeButton
       />
@@ -51,12 +53,12 @@ export function SearchPage() {
       <div className="bg-gray-800 text-white min-h-screen flex items-center justify-center">
         <div className="text-center" role="status" aria-live="polite">
           <h1 className="text-3xl font-bold mb-4">
-            Nenhum resultado encontrado
+            {t("search.noResults")}
           </h1>
           <p className="text-text-secondary">
             {q
-              ? `Não foram encontrados filmes para "${q}"`
-              : "Digite um termo de pesquisa para buscar filmes"}
+              ? t("search.noResultsDescription", { query: q })
+              : t("search.noQuery")}
           </p>
         </div>
       </div>
@@ -77,10 +79,10 @@ export function SearchPage() {
         aria-live="polite"
       >
         {isFetchingNextPage
-          ? "Carregando mais filmes..."
+          ? t("loading.loadingMore")
           : hasNextPage
-          ? "Scroll para mais filmes"
-          : "Você chegou ao final da lista de filmes"}
+          ? t("loading.scrollForMore")
+          : t("loading.endOfList")}
       </div>
     </div>
   );

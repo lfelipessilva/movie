@@ -17,7 +17,7 @@ describe("Error", () => {
 
   it("renders default title when not provided", () => {
     renderWithProviders(<Error message="Something went wrong" />);
-    expect(screen.getByText("Ops! Algo deu errado")).toBeInTheDocument();
+    expect(screen.getByText("Oops! Something went wrong")).toBeInTheDocument();
   });
 
   it("renders custom title when provided", () => {
@@ -36,14 +36,14 @@ describe("Error", () => {
     const onRetry = jest.fn();
     renderWithProviders(<Error message="Error" onRetry={onRetry} />);
     expect(
-      screen.getByRole("button", { name: /tentar novamente/i })
+      screen.getByRole("button", { name: /try again/i })
     ).toBeInTheDocument();
   });
 
   it("does not render retry button when onRetry not provided", () => {
     renderWithProviders(<Error message="Error" />);
     expect(
-      screen.queryByRole("button", { name: /tentar novamente/i })
+      screen.queryByRole("button", { name: /try again/i })
     ).not.toBeInTheDocument();
   });
 
@@ -52,7 +52,7 @@ describe("Error", () => {
     const user = userEvent.setup();
     renderWithProviders(<Error message="Error" onRetry={onRetry} />);
     const retryButton = screen.getByRole("button", {
-      name: /tentar novamente/i,
+      name: /try again/i,
     });
     await user.click(retryButton);
     expect(onRetry).toHaveBeenCalledTimes(1);
@@ -63,14 +63,14 @@ describe("Error", () => {
       <Error message="Error" showHomeButton={true} />
     );
     expect(
-      screen.getByRole("button", { name: /voltar para home/i })
+      screen.getByRole("button", { name: /back to home/i })
     ).toBeInTheDocument();
   });
 
   it("does not render home button when showHomeButton is false", () => {
     renderWithProviders(<Error message="Error" showHomeButton={false} />);
     expect(
-      screen.queryByRole("button", { name: /voltar para home/i })
+      screen.queryByRole("button", { name: /back to home/i })
     ).not.toBeInTheDocument();
   });
 
@@ -80,7 +80,7 @@ describe("Error", () => {
       <Error message="Error" showHomeButton={true} />
     );
     const homeButton = screen.getByRole("button", {
-      name: /voltar para home/i,
+      name: /back to home/i,
     });
     await user.click(homeButton);
     expect(mockNavigate).toHaveBeenCalledWith("/");
@@ -98,7 +98,7 @@ describe("Error", () => {
     renderWithProviders(<Error message="Error message" />);
     const errorElement = screen.getByRole("alert");
     expect(errorElement).toHaveAttribute("aria-live", "assertive");
-    expect(errorElement).toHaveAttribute("aria-label", "Erro");
+    expect(errorElement).toHaveAttribute("aria-label", "Error");
   });
 });
 

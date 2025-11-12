@@ -1,4 +1,5 @@
 import { useInfiniteQuery } from "@tanstack/react-query";
+import { useTranslation } from "react-i18next";
 import { api } from "../lib/axios";
 import type { PopularMovie } from "../types/movie";
 import type { PaginatedResponse } from "../types/paginated-response";
@@ -14,8 +15,9 @@ const getPopularMovies = async ({ page }: { page: number }) => {
 };
 
 export function usePopularMovies() {
+  const { i18n } = useTranslation();
   return useInfiniteQuery({
-    queryKey: ["movies", "popular"],
+    queryKey: ["movies", "popular", i18n.language],
     initialPageParam: 1,
     queryFn: ({ pageParam }) => getPopularMovies({ page: pageParam }),
     getNextPageParam: (lastPage) => {

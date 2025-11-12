@@ -1,8 +1,9 @@
 import React from "react";
 import { QueryClientProvider, type QueryClient } from "@tanstack/react-query";
 import { createMemoryRouter, RouterProvider } from "react-router";
+import { I18nextProvider } from "react-i18next";
 import { FavoritesProvider } from "../contexts/favorites";
-import { createTestQueryClient } from "./helpers";
+import { createTestQueryClient, getTestI18nInstance } from "./helpers";
 
 interface RouterWrapperProps {
   children: React.ReactNode;
@@ -56,10 +57,7 @@ export function FavoritesWrapper({
 }: FavoritesWrapperProps) {
   React.useEffect(() => {
     if (initialFavorites.length > 0) {
-      localStorage.setItem(
-        "movie-favorites",
-        JSON.stringify(initialFavorites)
-      );
+      localStorage.setItem("movie-favorites", JSON.stringify(initialFavorites));
     } else {
       localStorage.removeItem("movie-favorites");
     }
@@ -83,15 +81,19 @@ export function AllProvidersWrapper({
   queryClient = createTestQueryClient(),
   initialFavorites = [],
 }: AllProvidersWrapperProps) {
+  const i18nInstance = getTestI18nInstance();
   return (
-    <QueryWrapper queryClient={queryClient}>
-      <FavoritesWrapper initialFavorites={initialFavorites}>
-        <RouterWrapper initialEntries={initialEntries} initialIndex={initialIndex}>
-          {children}
-        </RouterWrapper>
-      </FavoritesWrapper>
-    </QueryWrapper>
+    <I18nextProvider i18n={i18nInstance}>
+      <QueryWrapper queryClient={queryClient}>
+        <FavoritesWrapper initialFavorites={initialFavorites}>
+          <RouterWrapper
+            initialEntries={initialEntries}
+            initialIndex={initialIndex}
+          >
+            {children}
+          </RouterWrapper>
+        </FavoritesWrapper>
+      </QueryWrapper>
+    </I18nextProvider>
   );
 }
-
-

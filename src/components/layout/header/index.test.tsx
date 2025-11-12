@@ -9,13 +9,13 @@ jest.mock("../../search-input", () => ({
 }));
 
 describe("Header", () => {
-  it("renders navigation links (Home and Favoritos)", () => {
+  it("renders navigation links (Home and Favorites)", () => {
     renderWithProviders(<Header />, { initialEntries: ["/"] });
 
     expect(screen.getByRole("link", { name: /home/i })).toBeInTheDocument();
 
     expect(
-      screen.getByRole("link", { name: /favoritos/i })
+      screen.getByRole("link", { name: /favorites/i })
     ).toBeInTheDocument();
   });
 
@@ -33,7 +33,7 @@ describe("Header", () => {
   it("highlights active link based on pathname (/favorites)", () => {
     renderWithProviders(<Header />, { initialEntries: ["/favorites"] });
 
-    const favoritesLink = screen.getByRole("link", { name: /favoritos/i });
+    const favoritesLink = screen.getByRole("link", { name: /favorites/i });
 
     expect(favoritesLink).toHaveClass("text-accent-primary");
     expect(favoritesLink).toHaveAttribute("aria-current", "page");
