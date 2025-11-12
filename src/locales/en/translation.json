@@ -1,7 +1,14 @@
 {
   "nav": {
     "home": "Home",
-    "favorites": "Favorites"
+    "favorites": "Favorites",
+    "ariaLabel": "Main navigation"
+  },
+  "a11y": {
+    "skipToMain": "Skip to main content"
+  },
+  "home": {
+    "heading": "Popular Movies"
   },
   "loading": {
     "loading": "Loading {{label}}...",
@@ -13,6 +20,7 @@
     "title": "Oops! Something went wrong",
     "retry": "Try again",
     "goHome": "Back to Home",
+    "goHomeAriaLabel": "Go back to home page",
     "error": "Error",
     "loadMovies": "Error loading movies",
     "loadFavorites": "An error occurred while loading your favorite movies",
@@ -26,7 +34,8 @@
     "synopsis": "Synopsis",
     "synopsisNotAvailable": "Synopsis not available.",
     "back": "Back",
-    "backAriaLabel": "Back to previous page"
+    "backAriaLabel": "Back to previous page",
+    "cardAriaLabel": "View details of {{title}}"
   },
   "favorite": {
     "add": "Add to favorites",
@@ -36,7 +45,9 @@
     "unfavorite": "Remove from Favorites",
     "none": "No favorite movies",
     "noneDescription": "Add movies to favorites to see them here",
-    "noneButton": "See popular movies"
+    "noneButton": "See popular movies",
+    "noneButtonAriaLabel": "Go to popular movies page",
+    "heading": "Favorite Movies"
   },
   "search": {
     "placeholder": "Search",
@@ -44,7 +55,9 @@
     "clear": "Clear search",
     "noResults": "No results found",
     "noResultsDescription": "No movies found for \"{{query}}\"",
-    "noQuery": "Enter a search term to search for movies"
+    "noQuery": "Enter a search term to search for movies",
+    "heading": "Search Results",
+    "resultsFor": "Search results for \"{{query}}\""
   },
   "sorter": {
     "title": "Title",

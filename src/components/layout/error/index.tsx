@@ -28,7 +28,7 @@ export function Error({
     >
       <div className="flex flex-col items-center gap-6 max-w-md text-center">
         <div className="relative bg-surface-elevated rounded-full">
-          <AlertCircle className="w-16 h-16 text-accent-primary" />
+          <AlertCircle className="w-16 h-16 text-accent-primary" aria-hidden="true" />
         </div>
 
         <div className="space-y-3">
@@ -46,7 +46,8 @@ export function Error({
               aria-label={t("error.retry")}
             >
               <RefreshCw
-                className={`w-5 h-5`}
+                className="w-5 h-5"
+                aria-hidden="true"
               />
               {t("error.retry")}
             </button>
@@ -55,8 +56,9 @@ export function Error({
             <button
               onClick={() => navigate("/")}
               className="flex items-center justify-center gap-2 bg-surface-card hover:bg-surface-elevated text-text-primary border border-border-soft px-6 py-3 rounded-lg font-medium transition-colors focus-visible:outline-2 focus-visible:outline-accent-primary focus-visible:outline-offset-2"
+              aria-label={t("error.goHomeAriaLabel")}
             >
-              <Home className="w-5 h-5" />
+              <Home className="w-5 h-5" aria-hidden="true" />
               {t("error.goHome")}
             </button>
           )}

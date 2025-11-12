@@ -56,6 +56,7 @@ export function MoviePage() {
           <button
             onClick={() => navigate("/")}
             className="bg-accent-primary hover:bg-accent-primary-hover text-white px-6 py-2 rounded-md"
+            aria-label={t("error.goHomeAriaLabel")}
           >
             {t("error.goHome")}
           </button>

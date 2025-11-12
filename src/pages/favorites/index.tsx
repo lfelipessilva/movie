@@ -22,13 +22,13 @@ export function FavoritesPage() {
 
   if (!hasError && !isLoading && movies.length === 0) {
     return (
-      <div className="bg-surface-primary text-text-primary min-h-screen flex items-center justify-center px-4">
-        <div className="flex flex-col items-center gap-8 max-w-md text-center">
-          <div className="relative bg-surface-elevated rounded-full p-6">
+      <div className="flex flex-col items-center justify-center h-dvh gap-8 px-4">
+        <div className="flex flex-col items-center gap-6 max-w-md text-center">
+          <div className="relative bg-surface-elevated rounded-full">
             <Clapperboard className="w-16 h-16 text-accent-primary" />
           </div>
 
-          <div className="space-y-4">
+          <div className="space-y-3">
             <h1 className="text-text-primary text-3xl md:text-4xl font-bold">
               {t("favorite.none")}
             </h1>
@@ -39,7 +39,8 @@ export function FavoritesPage() {
 
           <button
             onClick={() => navigate("/")}
-            className="flex items-center justify-center gap-2 bg-accent-primary hover:bg-accent-primary-hover text-white px-8 py-4 rounded-lg font-medium transition-all duration-200 hover:scale-105 focus-visible:outline-2 focus-visible:outline-accent-primary focus-visible:outline-offset-2 shadow-lg shadow-accent-primary/20"
+            className="flex items-center justify-center gap-2 bg-accent-primary hover:bg-accent-primary-hover text-white px-6 py-3 rounded-lg font-medium transition-colors focus-visible:outline-2 focus-visible:outline-accent-primary focus-visible:outline-offset-2"
+            aria-label={t("favorite.noneButtonAriaLabel")}
           >
             {t("favorite.noneButton")}
           </button>
@@ -64,12 +65,17 @@ export function FavoritesPage() {
 
   return (
     <div className="bg-gray-800 text-white min-h-screen">
-      <FavoriteSorter sortBy={sortBy} order={order} />
-      <div className="w-full grid grid-cols-1 lg:grid-cols-2 2xl:grid-cols-3 gap-8 mx-auto px-4 pb-16">
-        {movies.map((movie) => (
-          <MovieCard key={movie.id} movie={movie} />
-        ))}
-      </div>
+      <section aria-labelledby="favorites-heading">
+        <h1 id="favorites-heading" className="sr-only">
+          {t("favorite.heading")}
+        </h1>
+        <FavoriteSorter sortBy={sortBy} order={order} />
+        <div className="w-full grid grid-cols-1 lg:grid-cols-2 2xl:grid-cols-3 gap-8 mx-auto px-4 pb-16">
+          {movies.map((movie) => (
+            <MovieCard key={movie.id} movie={movie} />
+          ))}
+        </div>
+      </section>
     </div>
   );
 }

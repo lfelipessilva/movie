@@ -11,7 +11,7 @@ export function Header() {
     <header className="flex flex-col sm:flex-row justify-between items-center gap-4 p-4">
       <section className="flex w-full items-center justify-between sm:justify-start  gap-8">
         <img src="/logo.svg" alt="Movie" className="w-10 h-10" />
-        <nav>
+        <nav aria-label={t("nav.ariaLabel")}>
           <ul className="flex gap-4">
             <li>
               <Link

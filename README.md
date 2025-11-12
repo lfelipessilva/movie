@@ -226,6 +226,35 @@ Os testes estão organizados junto aos componentes e hooks, seguindo o padrão `
 ## Adicionais
 
 
+### Acessibilidade (a11y)
+
+A aplicação foi desenvolvida seguindo as diretrizes WCAG 2.1 nível AA, garantindo uma experiência acessível para todos os usuários.
+
+#### Funcionalidades de Acessibilidade
+
+- **Navegação por Teclado**: Suporte completo para navegação usando apenas o teclado
+- **Skip Link**: Link de navegação rápida para pular para o conteúdo principal (visível ao focar com Tab)
+- **ARIA Labels**: Todos os elementos interativos possuem labels descritivos para leitores de tela
+- **Semantic HTML**: Uso de elementos semânticos (`<main>`, `<nav>`, `<section>`, etc.) para melhor estruturação
+- **Hierarquia de Cabeçalhos**: Estrutura adequada de h1-h6 em todas as páginas
+- **Anúncios de Estado**: Uso de `aria-live` para anunciar mudanças dinâmicas de conteúdo (loading, erros)
+- **Atributo Lang Dinâmico**: O atributo `lang` do HTML é atualizado automaticamente conforme o idioma selecionado
+- **Ícones Decorativos**: Todos os ícones decorativos possuem `aria-hidden="true"`
+- **Foco Visível**: Indicadores de foco claros e visíveis para todos os elementos interativos
+- **Contraste de Cores**: Cores seguem os requisitos de contraste WCAG AA (4.5:1 para texto, 3:1 para componentes)
+
+#### Ferramentas de Acessibilidade
+
+- **ESLint Plugin**: Configurado com `eslint-plugin-jsx-a11y` para validação automática de acessibilidade durante o desenvolvimento
+- **Validação Contínua**: Regras de acessibilidade são verificadas automaticamente no processo de linting
+
+#### Suporte a Leitores de Tela
+
+A aplicação foi testada e otimizada para funcionar com leitores de tela populares:
+- NVDA (Windows)
+- JAWS (Windows)
+- VoiceOver (macOS/iOS)
+
 ### Internacionalização (i18n)
 
 A aplicação possui suporte completo para internacionalização usando **i18next** e **react-i18next**, permitindo que os usuários alternem entre diferentes idiomas.

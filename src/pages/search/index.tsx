@@ -67,23 +67,28 @@ export function SearchPage() {
 
   return (
     <div className="bg-gray-800 text-white min-h-screen">
-      <div className="w-full grid grid-cols-1 lg:grid-cols-2 2xl:grid-cols-3 gap-8 mx-auto px-4 pb-16">
-        {movies.map((movie) => (
-          <MovieCard key={movie.id} movie={movie} />
-        ))}
-      </div>
-      <div
-        ref={intersectionObserver}
-        className="flex justify-center py-8"
-        role="status"
-        aria-live="polite"
-      >
-        {isFetchingNextPage
-          ? t("loading.loadingMore")
-          : hasNextPage
-          ? t("loading.scrollForMore")
-          : t("loading.endOfList")}
-      </div>
+      <section aria-labelledby="search-results-heading">
+        <h1 id="search-results-heading" className="sr-only">
+          {q ? t("search.resultsFor", { query: q }) : t("search.heading")}
+        </h1>
+        <div className="w-full grid grid-cols-1 lg:grid-cols-2 2xl:grid-cols-3 gap-8 mx-auto px-4 pb-16">
+          {movies.map((movie) => (
+            <MovieCard key={movie.id} movie={movie} />
+          ))}
+        </div>
+        <div
+          ref={intersectionObserver}
+          className="flex justify-center py-8"
+          role="status"
+          aria-live="polite"
+        >
+          {isFetchingNextPage
+            ? t("loading.loadingMore")
+            : hasNextPage
+            ? t("loading.scrollForMore")
+            : t("loading.endOfList")}
+        </div>
+      </section>
     </div>
   );
 }

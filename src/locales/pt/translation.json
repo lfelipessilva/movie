@@ -1,7 +1,14 @@
 {
   "nav": {
     "home": "Home",
-    "favorites": "Favoritos"
+    "favorites": "Favoritos",
+    "ariaLabel": "Navegação principal"
+  },
+  "a11y": {
+    "skipToMain": "Pular para o conteúdo principal"
+  },
+  "home": {
+    "heading": "Filmes Populares"
   },
   "loading": {
     "loading": "Carregando {{label}}...",
@@ -13,6 +20,7 @@
     "title": "Ops! Algo deu errado",
     "retry": "Tentar novamente",
     "goHome": "Voltar para Home",
+    "goHomeAriaLabel": "Voltar para a página inicial",
     "error": "Erro",
     "loadMovies": "Erro ao carregar filmes",
     "loadFavorites": "Ocorreu um erro ao carregar seus filmes favoritos",
@@ -26,7 +34,8 @@
     "synopsis": "Sinopse",
     "synopsisNotAvailable": "Sinopse não disponível.",
     "back": "Voltar",
-    "backAriaLabel": "Voltar para página anterior"
+    "backAriaLabel": "Voltar para página anterior",
+    "cardAriaLabel": "Ver detalhes de {{title}}"
   },
   "favorite": {
     "add": "Adicionar aos favoritos",
@@ -36,7 +45,9 @@
     "unfavorite": "Remover dos Favoritos",
     "none": "Nenhum filme favorito",
     "noneDescription": "Adicione filmes aos favoritos para vê-los aqui",
-    "noneButton": "Ver filmes populares"
+    "noneButton": "Ver filmes populares",
+    "noneButtonAriaLabel": "Ir para página de filmes populares",
+    "heading": "Filmes Favoritos"
   },
   "search": {
     "placeholder": "Pesquisar",
@@ -44,7 +55,9 @@
     "clear": "Limpar pesquisa",
     "noResults": "Nenhum resultado encontrado",
     "noResultsDescription": "Não foram encontrados filmes para \"{{query}}\"",
-    "noQuery": "Digite um termo de pesquisa para buscar filmes"
+    "noQuery": "Digite um termo de pesquisa para buscar filmes",
+    "heading": "Resultados da Pesquisa",
+    "resultsFor": "Resultados da pesquisa para \"{{query}}\""
   },
   "sorter": {
     "title": "Título",

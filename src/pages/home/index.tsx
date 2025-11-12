@@ -46,23 +46,28 @@ export function HomePage() {
 
   return (
     <div className="bg-gray-800 text-white min-h-screen">
-      <div className="w-full grid grid-cols-1 lg:grid-cols-2 2xl:grid-cols-3 gap-8 mx-auto px-4 pb-16">
-        {movies.map((movie) => (
-          <MovieCard key={movie.id} movie={movie} />
-        ))}
-        <div
-          ref={intersectionObserver}
-          className="flex justify-center py-8"
-          role="status"
-          aria-live="polite"
-        >
-          {isFetchingNextPage
-            ? t("loading.loadingMore")
-            : hasNextPage
-            ? t("loading.scrollForMore")
-            : t("loading.endOfList")}
+      <section aria-labelledby="popular-movies-heading">
+        <h1 id="popular-movies-heading" className="sr-only">
+          {t("home.heading")}
+        </h1>
+        <div className="w-full grid grid-cols-1 lg:grid-cols-2 2xl:grid-cols-3 gap-8 mx-auto px-4 pb-16">
+          {movies.map((movie) => (
+            <MovieCard key={movie.id} movie={movie} />
+          ))}
+          <div
+            ref={intersectionObserver}
+            className="flex justify-center py-8"
+            role="status"
+            aria-live="polite"
+          >
+            {isFetchingNextPage
+              ? t("loading.loadingMore")
+              : hasNextPage
+              ? t("loading.scrollForMore")
+              : t("loading.endOfList")}
+          </div>
         </div>
-      </div>
+      </section>
     </div>
   );
 }

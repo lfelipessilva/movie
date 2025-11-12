@@ -125,14 +125,14 @@ describe("MovieCard", () => {
 
     const movie = createMockPopularMovie({ id: 123 });
 
-    const { container } = renderWithProviders(<MovieCard movie={movie} />);
+    renderWithProviders(<MovieCard movie={movie} />);
 
-    const card = container.querySelector("article");
+    const card = screen.getByRole("button", {
+      name: /View details of/i,
+    });
 
-    if (card) {
-      await user.click(card);
-      expect(mockNavigate).toHaveBeenCalledWith("/movie/123");
-    }
+    await user.click(card);
+    expect(mockNavigate).toHaveBeenCalledWith("/movie/123");
   });
 
   it("navigates on Enter key press", async () => {
@@ -144,7 +144,7 @@ describe("MovieCard", () => {
     renderWithProviders(<MovieCard movie={movie} />);
 
     const card = screen.getByRole("button", {
-      name: /ver detalhes de/i,
+      name: /View details of/i,
     });
 
     card.focus();
