@@ -1,5 +1,5 @@
 import { useQueries } from "@tanstack/react-query";
-import { useFavorites } from "./use-favorites";
+import { useFavorites } from "./ui/use-favorites";
 import { getMovieById } from "./get-movie-by-id";
 
 export function useFavoriteMovies({

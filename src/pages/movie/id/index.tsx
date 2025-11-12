@@ -1,3 +1,4 @@
+import { useLayoutEffect, useRef } from "react";
 import { useParams, useNavigate } from "react-router";
 import { useMovieById } from "../../../hooks/get-movie-by-id";
 import { useMovieImage } from "../../../hooks/get-movie-image";
@@ -8,15 +9,28 @@ import { ArrowLeft } from "lucide-react";
 export function MoviePage() {
   const { id } = useParams();
   const navigate = useNavigate();
+
+  const containerRef = useRef<HTMLDivElement>(null);
+
   const { data, isLoading } = useMovieById({ id: Number(id) });
-  const { url: posterUrl } = useMovieImage({ path: data?.poster_path ?? null, width: 300 });
-  const { url: backdropUrl } = useMovieImage({ path: data?.backdrop_path ?? null, width: 1280 });
+  const { url: posterUrl } = useMovieImage({
+    path: data?.poster_path ?? null,
+    width: 300,
+  });
+  const { url: backdropUrl } = useMovieImage({
+    path: data?.backdrop_path ?? null,
+    width: 1280,
+  });
 
   const movieId = Number(id);
 
+  useLayoutEffect(() => {
+    containerRef.current?.scrollIntoView({ behavior: "instant", block: "start" });
+  }, [id]);
+
   if (isLoading) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
+      <div ref={containerRef} className="min-h-screen flex items-center justify-center">
         <div className="text-text-secondary">Carregando...</div>
       </div>
     );
@@ -24,7 +38,7 @@ export function MoviePage() {
 
   if (!data) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
+      <div ref={containerRef} className="min-h-screen flex items-center justify-center">
         <div className="text-center">
           <h1 className="text-2xl font-bold mb-4">Filme não encontrado</h1>
           <button
@@ -46,8 +60,8 @@ export function MoviePage() {
   });
 
   return (
-    <div className="">
-      <div className="relative h-[85vh] overflow-hidden">
+    <div ref={containerRef}>
+      <div className="relative h-dvh overflow-hidden">
         {backdropUrl && (
           <>
             <div
@@ -64,8 +78,8 @@ export function MoviePage() {
           <div className="absolute inset-0 bg-surface-elevated" />
         )}
 
-        <div className="relative z-10 h-full flex items-center">
-          <div className="container mx-auto px-8">
+        <div className="relative z-10 h-full flex items-start p-8">
+          <div className="container mx-auto">
             <button
               onClick={() => navigate(-1)}
               className="mb-8 flex items-center gap-2 text-text-primary hover:text-text-secondary transition-colors"
@@ -90,7 +104,7 @@ export function MoviePage() {
                   <h1 className="text-3xl sm:text-4xl md:text-6xl font-bold mb-4 text-text-primary">
                     {data.title}
                   </h1>
-                  
+
                   {data.genres && data.genres.length > 0 && (
                     <div className="flex flex-wrap gap-2 mb-4">
                       {data.genres.map((genre) => (
@@ -106,12 +120,17 @@ export function MoviePage() {
 
                   <div className="flex flex-wrap items-center gap-4 mb-6 text-text-secondary">
                     <div>
-                      <span className="font-semibold">Data de Lançamento: </span>
+                      <span className="font-semibold">
+                        Data de Lançamento:{" "}
+                      </span>
                       {formattedDate}
                     </div>
                     <div className="flex items-center gap-2">
                       <span className="font-semibold">Nota: </span>
-                      <Rating rating={data.vote_average} quantity={data.vote_count} />
+                      <Rating
+                        rating={data.vote_average}
+                        quantity={data.vote_count}
+                      />
                     </div>
                   </div>
                 </div>
@@ -121,8 +140,10 @@ export function MoviePage() {
                 </div>
 
                 <div>
-                  <h2 className="text-xl sm:text-2xl font-bold mb-3 text-text-primary">Sinopse</h2>
-                  <p className="text-md text-text-secondary leading-relaxed max-w-3xl">
+                  <h2 className="text-xl sm:text-2xl font-bold mb-3 text-text-primary">
+                    Sinopse
+                  </h2>
+                  <p className="text-md md:text-lg text-text-secondary leading-relaxed max-w-3xl">
                     {data.overview || "Sinopse não disponível."}
                   </p>
                 </div>

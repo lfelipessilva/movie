@@ -64,7 +64,7 @@ export function Header() {
           type="text"
           placeholder="Pesquisar"
           value={q ?? ""}
-          className={`w-96 p-2 pr-8 border-b border-border-primary focus:outline-none ${
+          className={`hidden sm:block w-96 p-2 pr-8 border-b border-border-primary focus:outline-none ${
             pathname === "/search" ? "border-accent-primary" : "border-border-primary"
           }`}
           onChange={handleChange}

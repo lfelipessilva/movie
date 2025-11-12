@@ -8,7 +8,7 @@ import { FavoriteButton } from "../../favorite/button";
 export function MovieCard({ movie }: { movie: PopularMovie | Movie}) {
   const { url: posterUrl } = useMovieImage({ path: movie.poster_path, width: 300 });
   const navigate = useNavigate();
-  const { handleMove, glowStyle } = useGlowEffect();
+  const { handleMove, glowStyle, setGlowRef } = useGlowEffect();
 
   return (
     <article
@@ -17,6 +17,7 @@ export function MovieCard({ movie }: { movie: PopularMovie | Movie}) {
       onClick={() => navigate(`/movie/${movie.id}`)}
     >
       <div
+        ref={setGlowRef}
         className="absolute inset-0 rounded-md pointer-events-none transition-opacity duration-300"
         style={glowStyle}
       />

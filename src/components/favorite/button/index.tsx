@@ -1,16 +1,14 @@
 import { Heart } from "lucide-react";
-import { useFavorites } from "../../../hooks/use-favorites";
+import { useFavorites } from "../../../hooks/ui/use-favorites";
 
 interface FavoriteButtonProps {
   movieId: number;
   variant?: "compact" | "full";
-  onClick?: (e: React.MouseEvent) => void;
 }
 
 export function FavoriteButton({
   movieId,
   variant = "full",
-  onClick,
 }: FavoriteButtonProps) {
   const { isFavorite, toggleFavorite } = useFavorites();
   const favorited = isFavorite(movieId);
@@ -18,11 +16,12 @@ export function FavoriteButton({
   const handleClick = (e: React.MouseEvent) => {
     e.stopPropagation();
     toggleFavorite(movieId);
-    onClick?.(e);
   };
 
-  const favoritedClasses = "bg-accent-primary hover:bg-accent-primary-hover text-white";
-  const unfavoritedClasses = "bg-surface-card hover:bg-surface-elevated text-text-primary border border-border-soft";
+  const favoritedClasses =
+    "bg-accent-primary hover:bg-accent-primary-hover text-white";
+  const unfavoritedClasses =
+    "bg-surface-card hover:bg-surface-elevated text-text-primary border border-border-soft";
   const heartFillClass = favorited ? "fill-current" : "";
 
   if (variant === "compact") {

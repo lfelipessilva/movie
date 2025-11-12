@@ -1,8 +1,9 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
+import { FavoritesContext } from "./context";
 
 const FAVORITES_KEY = "movie-favorites";
 
-export function useFavorites() {
+export function FavoritesProvider({ children }: { children: React.ReactNode }) {
   const [favorites, setFavorites] = useState<number[]>(() => {
     const stored = localStorage.getItem(FAVORITES_KEY);
     return stored ? JSON.parse(stored) : [];
@@ -33,12 +34,19 @@ export function useFavorites() {
 
   const isFavorite = (movieId: number) => favorites.includes(movieId);
 
-  return {
-    favorites,
-    addFavorite,
-    removeFavorite,
-    toggleFavorite,
-    isFavorite,
-  };
+  return (
+    <FavoritesContext.Provider
+      value={{
+        favorites,
+        addFavorite,
+        removeFavorite,
+        toggleFavorite,
+        isFavorite,
+      }}
+    >
+      {children}
+    </FavoritesContext.Provider>
+  );
 }
+
 
