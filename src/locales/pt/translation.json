@@ -35,7 +35,8 @@
     "favorited": "Favorito",
     "unfavorite": "Remover dos Favoritos",
     "none": "Nenhum filme favorito",
-    "noneDescription": "Adicione filmes aos favoritos para vê-los aqui"
+    "noneDescription": "Adicione filmes aos favoritos para vê-los aqui",
+    "noneButton": "Ver filmes populares"
   },
   "search": {
     "placeholder": "Pesquisar",

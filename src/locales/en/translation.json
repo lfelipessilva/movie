@@ -35,7 +35,8 @@
     "favorited": "Favorited",
     "unfavorite": "Remove from Favorites",
     "none": "No favorite movies",
-    "noneDescription": "Add movies to favorites to see them here"
+    "noneDescription": "Add movies to favorites to see them here",
+    "noneButton": "See popular movies"
   },
   "search": {
     "placeholder": "Search",
