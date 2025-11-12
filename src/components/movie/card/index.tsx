@@ -1,18 +1,18 @@
 import { Rating } from "../../rating";
-import type { Movie } from "../../../types/movie";
+import type { PopularMovie } from "../../../types/movie";
 import { useGlowEffect } from "../../../hooks/ui/use-glow-effect";
 import { useNavigate } from "react-router";
 import { useMovieImage } from "../../../hooks/get-movie-image";
 import { FavoriteButton } from "../../favorite-button";
 
-export function MovieCard({ movie }: { movie: Movie }) {
+export function MovieCard({ movie }: { movie: PopularMovie }) {
   const { url: posterUrl } = useMovieImage({ path: movie.poster_path, width: 300 });
   const navigate = useNavigate();
   const { handleMove, glowStyle } = useGlowEffect();
 
   return (
     <article
-      className="relative min-w-2xl flex gap-4 p-4 rounded-md mt-24 shadow-lg bg-surface-primary cursor-pointer"
+      className="relative flex flex-col sm:flex-row gap-4 p-4 rounded-md mt-24 shadow-lg bg-surface-primary cursor-pointer"
       onMouseMove={handleMove}
       onClick={() => navigate(`/movie/${movie.id}`)}
     >

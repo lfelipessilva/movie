@@ -1,10 +1,10 @@
 import { useInfiniteQuery } from "@tanstack/react-query";
 import { api } from "../lib/axios";
-import type { Movie } from "../types/movie";
+import type { PopularMovie } from "../types/movie";
 import type { PaginatedResponse } from "../types/paginated-response";
 
 const getPopularMovies = async ({ page }: { page: number }) => {
-  const response = await api.get<PaginatedResponse<Movie>>("/movie/popular", {
+  const response = await api.get<PaginatedResponse<PopularMovie>>("/movie/popular", {
     params: {
       page,
     },
