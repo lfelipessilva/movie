@@ -8,9 +8,12 @@ import { SearchPage } from "./pages/search";
 import { FavoritesPage } from "./pages/favorites";
 import { MoviesPage } from "./pages/movies";
 import { Layout } from "./components/layout";
+import { QueryClientProvider } from "@tanstack/react-query";
+import { queryClient } from "./lib/query-client";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
+    <QueryClientProvider client={queryClient}>
     <BrowserRouter>
       <Routes>
         <Route element={<Layout />}>
@@ -22,5 +25,6 @@ createRoot(document.getElementById("root")!).render(
         </Route>
       </Routes>
     </BrowserRouter>
+    </QueryClientProvider>
   </StrictMode>
 );
