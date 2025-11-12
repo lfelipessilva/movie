@@ -251,23 +251,22 @@ A aplicação foi desenvolvida seguindo as diretrizes WCAG 2.1 nível AA, garant
 #### Suporte a Leitores de Tela
 
 A aplicação foi testada e otimizada para funcionar com leitores de tela populares:
-- NVDA (Windows)
-- JAWS (Windows)
 - VoiceOver (macOS/iOS)
 
 ### Internacionalização (i18n)
 
 A aplicação possui suporte completo para internacionalização usando **i18next** e **react-i18next**, permitindo que os usuários alternem entre diferentes idiomas.
 
-### Idiomas Suportados
+#### Idiomas Suportados
 
 - **Inglês (en)**: Idioma padrão
 - **Português (pt)**: Suporte completo
 
-### Funcionalidades
+#### Funcionalidades
 
 - **Detecção Automática de Idioma**: O sistema detecta automaticamente o idioma preferido do navegador
 - **Persistência de Preferência**: A preferência de idioma é salva no localStorage
+
 ## Deploy
 
 A aplicação está configurada para deploy usando Docker e Nginx.
