@@ -13,6 +13,7 @@ Aplicação disponível em: [https://movie.luislab.xyz](https://movie.luislab.xy
 - **Detalhes do Filme**: Visualização completa de informações, incluindo sinopse, gêneros, data de lançamento e avaliações
 - **Gerenciamento de Favoritos**: Adição e remoção de filmes da lista de favoritos com persistência em localStorage
 - **Ordenação de Favoritos**: Ordenação por título ou avaliação em ordem crescente ou decrescente
+- **Internacionalização (i18n)**: Suporte para múltiplos idiomas (inglês e português) com detecção automática e troca de idioma
 - **Tratamento de Erros**: Exibição de mensagens de erro com opção de retry
 - **Estados de Loading**: Indicadores visuais durante carregamento de dados
 - **Design Responsivo**: Interface adaptável para diferentes tamanhos de tela
@@ -124,6 +125,10 @@ npm run lint
 
 - **Axios**: Cliente HTTP para requisições à API
 
+### Internacionalização
+
+- **i18next**: Framework de internacionalização
+
 ### Testes
 
 - **Jest**: Framework de testes
@@ -218,6 +223,22 @@ Os testes estão organizados junto aos componentes e hooks, seguindo o padrão `
 - Testes de funcionalidades de favoritos
 - Testes de ordenação
 
+## Adicionais
+
+
+### Internacionalização (i18n)
+
+A aplicação possui suporte completo para internacionalização usando **i18next** e **react-i18next**, permitindo que os usuários alternem entre diferentes idiomas.
+
+### Idiomas Suportados
+
+- **Inglês (en)**: Idioma padrão
+- **Português (pt)**: Suporte completo
+
+### Funcionalidades
+
+- **Detecção Automática de Idioma**: O sistema detecta automaticamente o idioma preferido do navegador
+- **Persistência de Preferência**: A preferência de idioma é salva no localStorage
 ## Deploy
 
 A aplicação está configurada para deploy usando Docker e Nginx.
@@ -258,6 +279,7 @@ movie/
 ├── src/
 │   ├── components/       # Componentes React reutilizáveis
 │   │   ├── favorite/     # Componentes relacionados a favoritos
+│   │   ├── language-switcher/ # Componente de troca de idioma
 │   │   ├── layout/       # Componentes de layout (Header, Error, Loading)
 │   │   ├── movie/        # Componentes relacionados a filmes
 │   │   ├── rating/       # Componente de avaliação
@@ -269,7 +291,11 @@ movie/
 │   │   └── *.ts          # Hooks de API
 │   ├── lib/              # Configurações e utilitários
 │   │   ├── axios.ts      # Cliente HTTP configurado
+│   │   ├── i18n.ts       # Configuração do i18next
 │   │   └── query-client.ts # Configuração do TanStack Query
+│   ├── locales/          # Arquivos de tradução
+│   │   ├── en/           # Traduções em inglês
+│   │   └── pt/           # Traduções em português
 │   ├── pages/            # Páginas da aplicação
 │   │   ├── favorites/    # Página de favoritos
 │   │   ├── home/         # Página inicial
