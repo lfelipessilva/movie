@@ -2,19 +2,19 @@ import { useQuery } from "@tanstack/react-query";
 import { useEffect, useMemo } from "react";
 import { imageApi } from "../lib/axios";
 
-const getMoviePoster = async ({ path }: { path: string | null }) => {
+const getMovieImage = async ({ path, width }: { path: string | null, width: number }) => {
   if (!path) return null;
 
-  const response = await imageApi.get<Blob>(path, {
+  const response = await imageApi.get<Blob>(`/w${width}${path}`, {
     responseType: "blob",
   });
   return response.data;
 };
 
-export function useMoviePoster({ path }: { path: string | null }) {
+export function useMovieImage({ path, width }: { path: string | null, width: number }) {
   const query = useQuery({
-    queryKey: ["movie", "poster", path],
-    queryFn: () => getMoviePoster({ path }),
+    queryKey: ["movie", "image", path],
+    queryFn: () => getMovieImage({ path, width }),
   });
 
   const url = useMemo(() => {

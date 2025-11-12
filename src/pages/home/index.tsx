@@ -1,7 +1,7 @@
 import { useCallback } from "react";
 import { MovieCard } from "../../components/movie/card";
 import { usePopularMovies } from "../../hooks/get-popular-movies";
-import { useIntersectionObserver } from "../../hooks/use-intersection-observer";
+import { useIntersectionObserver } from "../../hooks/ui/use-intersection-observer";
 
 export function HomePage() {
   const {
