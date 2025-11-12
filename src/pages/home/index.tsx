@@ -2,6 +2,8 @@ import { useCallback } from "react";
 import { MovieCard } from "../../components/movie/card";
 import { usePopularMovies } from "../../hooks/get-popular-movies";
 import { useIntersectionObserver } from "../../hooks/ui/use-intersection-observer";
+import { Loading } from "../../components/layout/loading";
+import { Error } from "../../components/layout/error";
 
 export function HomePage() {
   const {
@@ -11,6 +13,7 @@ export function HomePage() {
     hasNextPage,
     isFetchingNextPage,
     isPending,
+    refetch,
   } = usePopularMovies();
 
   const loadMore = useCallback(() => {
@@ -24,12 +27,17 @@ export function HomePage() {
     rootMargin: "300px",
   });
 
-  if (isPending) return <div>Loading...</div>;
+  if (isPending) {
+    return <Loading label="filmes" />;
+  }
 
-  if (error || !data) {
-    const message =
-      error instanceof Error ? error.message : "Erro ao carregar filmes";
-    return <div>Error: {message}</div>;
+  if (error) {
+    return (
+      <Error
+        message="Erro ao carregar filmes"
+        onRetry={refetch}
+      />
+    );
   }
 
   const movies = data.pages.flatMap((page) => page.results);
@@ -40,7 +48,12 @@ export function HomePage() {
         {movies.map((movie) => (
           <MovieCard key={movie.id} movie={movie} />
         ))}
-        <div ref={intersectionObserver} className="flex justify-center py-8">
+        <div
+          ref={intersectionObserver}
+          className="flex justify-center py-8"
+          role="status"
+          aria-live="polite"
+        >
           {isFetchingNextPage
             ? "Carregando mais filmes..."
             : hasNextPage

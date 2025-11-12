@@ -35,7 +35,7 @@ export function FavoriteButton({
         }`}
         title={favorited ? "Remover dos favoritos" : "Adicionar aos favoritos"}
       >
-        <Heart className={`w-4 h-4 ${heartFillClass}`} />
+        <Heart className={`w-4 h-4 ${heartFillClass}`} aria-hidden="true" />
         <span className="text-sm">{favorited ? "Favorito" : "Favoritar"}</span>
       </button>
     );
@@ -47,8 +47,9 @@ export function FavoriteButton({
       className={`flex items-center gap-2 px-8 py-3 rounded-md font-semibold transition-colors ${
         favorited ? favoritedClasses : unfavoritedClasses
       }`}
+      aria-label={favorited ? "Remover dos favoritos" : "Adicionar aos favoritos"}
     >
-      <Heart className={`w-5 h-5 ${heartFillClass}`} />
+      <Heart className={`w-5 h-5 ${heartFillClass}`} aria-hidden="true" />
       <span>{favorited ? "Remover dos Favoritos" : "Favoritar"}</span>
     </button>
   );

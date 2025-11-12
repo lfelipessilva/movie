@@ -6,9 +6,10 @@ import { useMovieImage } from "../../../hooks/get-movie-image";
 import { FavoriteButton } from "../../favorite/button";
 
 export function MovieCard({ movie }: { movie: PopularMovie | Movie}) {
-  const { url: posterUrl } = useMovieImage({ path: movie.poster_path, width: 300 });
   const navigate = useNavigate();
   const { handleMove, glowStyle, setGlowRef } = useGlowEffect();
+
+  const { url: posterUrl } = useMovieImage({ path: movie.poster_path, width: 300 });
 
   return (
     <article
@@ -20,6 +21,9 @@ export function MovieCard({ movie }: { movie: PopularMovie | Movie}) {
       onClick={() => navigate(`/movie/${movie.id}`)}
       onKeyDown={e => {
         if (e.key === "Enter" || e.key === " ") {
+          if (e.key === " ") {
+            e.preventDefault();
+          }
           navigate(`/movie/${movie.id}`);
         }
       }}
@@ -40,7 +44,7 @@ export function MovieCard({ movie }: { movie: PopularMovie | Movie}) {
 
       <div className="flex flex-col gap-4 justify-between items-end z-10">
         <div>
-          <h1 className="text-2xl font-bold">{movie.title}</h1>
+          <h2 className="text-2xl font-bold">{movie.title}</h2>
           <Rating rating={movie.vote_average} quantity={movie.vote_count} />
           <p
             className="text-text-secondary pt-4 line-clamp-5"

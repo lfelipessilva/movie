@@ -2,15 +2,21 @@ import { useSearchParams } from "react-router";
 import { FavoriteSorter } from "../../components/favorite/sorter";
 import { MovieCard } from "../../components/movie/card";
 import { useFavoriteMovies } from "../../hooks/get-favorite-movies";
+import { Loading } from "../../components/layout/loading";
+import { Error } from "../../components/layout/error";
 
 export function FavoritesPage() {
   const [searchParams] = useSearchParams();
   const sortBy = searchParams.get("sortBy") as "title" | "rating" | null;
   const order = searchParams.get("order") as "asc" | "desc" | null;
 
-  const { movies, isLoading, hasError } = useFavoriteMovies({ sortBy, order });
+  const { movies, isLoading, hasError, refetch } =
+    useFavoriteMovies({
+      sortBy,
+      order,
+    });
 
-  if (movies.length === 0) {
+  if (!hasError && !isLoading && movies.length === 0) {
     return (
       <div className="bg-gray-800 text-white min-h-screen flex items-center justify-center">
         <div className="text-center">
@@ -23,27 +29,18 @@ export function FavoritesPage() {
     );
   }
 
-  if (isLoading) {
+  if (hasError) {
     return (
-      <div className="bg-gray-800 text-white min-h-screen flex items-center justify-center">
-        <div>Carregando filmes favoritos...</div>
-      </div>
+      <Error
+        message="Ocorreu um erro ao carregar seus filmes favoritos"
+        onRetry={refetch}
+        showHomeButton
+      />
     );
   }
 
-  if (hasError) {
-    return (
-      <div className="bg-gray-800 text-white min-h-screen flex items-center justify-center">
-        <div className="text-center">
-          <h1 className="text-2xl font-bold mb-4">
-            Erro ao carregar favoritos
-          </h1>
-          <p className="text-text-secondary">
-            Ocorreu um erro ao carregar seus filmes favoritos
-          </p>
-        </div>
-      </div>
-    );
+  if (isLoading) {
+    return <Loading label="filmes favoritos" />;
   }
 
   return (

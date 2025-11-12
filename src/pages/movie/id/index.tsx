@@ -5,6 +5,8 @@ import { useMovieImage } from "../../../hooks/get-movie-image";
 import { Rating } from "../../../components/rating";
 import { FavoriteButton } from "../../../components/favorite/button";
 import { ArrowLeft } from "lucide-react";
+import { Loading } from "../../../components/layout/loading";
+import { Error } from "../../../components/layout/error";
 
 export function MoviePage() {
   const { id } = useParams();
@@ -12,7 +14,7 @@ export function MoviePage() {
 
   const containerRef = useRef<HTMLDivElement>(null);
 
-  const { data, isLoading } = useMovieById({ id: Number(id) });
+  const { data, isLoading, error, refetch } = useMovieById({ id: Number(id) });
   const { url: posterUrl } = useMovieImage({
     path: data?.poster_path ?? null,
     width: 300,
@@ -30,9 +32,17 @@ export function MoviePage() {
 
   if (isLoading) {
     return (
-      <div ref={containerRef} className="min-h-screen flex items-center justify-center">
-        <div className="text-text-secondary">Carregando...</div>
-      </div>
+      <Loading label="filme" />
+    );
+  }
+
+  if (error) {
+    return (
+      <Error
+        message="Erro ao carregar filme"
+        onRetry={refetch}
+        showHomeButton
+      />
     );
   }
 
@@ -83,8 +93,9 @@ export function MoviePage() {
             <button
               onClick={() => navigate(-1)}
               className="mb-8 flex items-center gap-2 text-text-primary hover:text-text-secondary transition-colors"
+              aria-label="Voltar para página anterior"
             >
-              <ArrowLeft className="w-5 h-5" />
+              <ArrowLeft className="w-5 h-5" aria-hidden="true" />
               <span>Voltar</span>
             </button>
 

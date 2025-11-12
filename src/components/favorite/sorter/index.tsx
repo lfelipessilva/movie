@@ -22,6 +22,25 @@ export function FavoriteSorter({
     }
   };
 
+  const isTitleActive = sortBy === "title";
+  const isRatingActive = sortBy === "rating";
+  const titleOrder = isTitleActive ? order : null;
+  const ratingOrder = isRatingActive ? order : null;
+
+  const getTitleLabel = () => {
+    if (!isTitleActive) return "Ordenar por título";
+    if (titleOrder === "asc") return "Ordenado por título (crescente), clique para ordenar decrescente";
+    if (titleOrder === "desc") return "Ordenado por título (decrescente), clique para remover ordenação";
+    return "Ordenar por título";
+  };
+
+  const getRatingLabel = () => {
+    if (!isRatingActive) return "Ordenar por nota";
+    if (ratingOrder === "asc") return "Ordenado por nota (crescente), clique para ordenar decrescente";
+    if (ratingOrder === "desc") return "Ordenado por nota (decrescente), clique para remover ordenação";
+    return "Ordenar por nota";
+  };
+
   return (
     <div className="flex justify-end pt-4 pr-4 gap-2">
       <button
@@ -29,12 +48,14 @@ export function FavoriteSorter({
         className={`flex items-center gap-1 border border-accent-primary text-white text-sm px-3 py-2 rounded-3xl ${
           sortBy === "title" ? "bg-accent-primary" : ""
         }`}
+        aria-label={getTitleLabel()}
+        aria-pressed={isTitleActive}
       >
         Título
         {sortBy === "title" && order === "asc" ? (
-          <ChevronUp className="w-4 h-4" />
+          <ChevronUp className="w-4 h-4" aria-hidden="true" />
         ) : sortBy === "title" && order === "desc" ? (
-          <ChevronDown className="w-4 h-4" />
+          <ChevronDown className="w-4 h-4" aria-hidden="true" />
         ) : null}
       </button>
       <button
@@ -42,12 +63,14 @@ export function FavoriteSorter({
         className={`flex items-center gap-1 border border-accent-primary text-white text-sm px-3 py-2 rounded-3xl ${
           sortBy === "rating" ? "bg-accent-primary" : ""
         }`}
+        aria-label={getRatingLabel()}
+        aria-pressed={isRatingActive}
       >
         Nota
         {sortBy === "rating" && order === "asc" ? (
-          <ChevronUp className="w-4 h-4" />
+          <ChevronUp className="w-4 h-4" aria-hidden="true" />
         ) : sortBy === "rating" && order === "desc" ? (
-          <ChevronDown className="w-4 h-4" />
+          <ChevronDown className="w-4 h-4" aria-hidden="true" />
         ) : null}
       </button>
     </div>

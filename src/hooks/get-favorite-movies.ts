@@ -19,6 +19,10 @@ export function useFavoriteMovies({
     })),
   });
 
+  const refetch = () => {
+    queries.forEach((query) => query.refetch());
+  };
+
   const isLoading = queries.some((query) => query.isPending);
   const hasError = queries.some((query) => query.error);
   const movies = queries
@@ -28,6 +32,7 @@ export function useFavoriteMovies({
   return {
     isLoading,
     hasError,
+    refetch,
     movies: movies.sort((a, b) => {
       if (sortBy === "title") {
         return order === "asc"
