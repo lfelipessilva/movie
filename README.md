@@ -228,7 +228,7 @@ Os testes estão organizados junto aos componentes e hooks, seguindo o padrão `
 
 ### Acessibilidade (a11y)
 
-A aplicação foi desenvolvida seguindo as diretrizes WCAG 2.1 nível AA, garantindo uma experiência acessível para todos os usuários.
+A aplicação foi desenvolvida seguindo boas práticas de acessibilidade, garantindo uma experiência acessível para todos os usuários.
 
 #### Funcionalidades de Acessibilidade
 
